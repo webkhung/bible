@@ -6,4 +6,14 @@
   = javascript_include_tag 'application', 'data-turbolinks-track' => true
   = csrf_meta_tags
 %body
+  AAAAAA
   = yield
+
+  - c = Curl::Easy.new("https://bibles.org/v2/verses/eng-GNTD:Acts.8.34.xml")
+  - c.http_auth_types = :basic
+  - c.username = 'wqZRG1WwyhSSh35OZdjGpRJq3acON5PT1YQI1IeW'
+  - c.follow_location = true
+  - c.max_redirects = 3
+  - c.password = 'bar'
+  - c.perform
+  = c.body_str
