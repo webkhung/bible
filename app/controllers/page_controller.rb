@@ -11,7 +11,7 @@ class PageController < ApplicationController
       "id" => "2",
       "name" => "The power of being thankful (7 days)",
       "description" => "giving thanks to God daily will positively impact our lives. When we pause to acknowledge His blessings it restores us to a state of spiritual peace. In this reading plan you'll find fourteen inspiring messages that will spark an attitude of gratitude in our hearts. Through uplifting Scripture, she illustrates God's never-ending love, inexhaustible grace, and always-accessible presence in our lives.",
-      "days" => ["1Chronicles.23:30","John.14:27","2 Corinthians.12:10","1 Timothy.6:12","Luke.4:32","Philippians.2:14","Romans.5:5","Isaiah.43:19","Titus.2:12","2Corinthians.5:21","2Corinthians.10:5","Matthew.6:26","1Samuel.17:45","Isaiah.61:3"]
+      "days" => ["1Chronicles.23:30","John.14:27","2Corinthians.12:10","1Timothy.6:12","Luke.4:32","Philippians.2:14","Romans.5:5","Isaiah.43:19","Titus.2:12","2Corinthians.5:21","2Corinthians.10:5","Matthew.6:26","1Samuel.17:45","Isaiah.61:3"]
     },
     {"name" => "temptation", "id" => '3', "description"=> "TTT", "days"=> ["Hebrews.2.18", "Hebrews.4.15", "James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5.8-9"]},
     {"name"=> "temptation2", "id" => '4', "description"=> "TTT", "days"=> ["James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5.8-9"]},
