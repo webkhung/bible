@@ -1,13 +1,25 @@
 class PageController < ApplicationController
 
   READING_PLAN = [
-      {"name" => "temptation", "id" => 1, "description"=> "TTT", "days"=> ["James.1.14,Hebrews.2.18", "Hebrews.2.18", "Hebrews.4.15", "James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5.8-9"]},
-      {"name"=> "temptation2", "id" => 2, "description"=> "TTT", "days"=> ["James.1.14", "Hebrews.2.18", "Hebrews.4.15", "James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5.8-9"]},
+    {
+      "id" => "1",
+      "name" => "Temptation (5 days)",
+      "description" => "Temptation comes in so many forms. And it is easy to excuse our decisions and justify ourselves. This seven-day plan shows you that you can overcome temptation, through the Spirit of God. Take time to quiet your mind, let God speak into your life, and you will find strength to overcome the greatest temptations.",
+      "days" => ["James.1:14", "Hebrews.2.18", "Hebrews.4.15", "James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5:8-9"]
+    },
+    {
+      "id" => "2",
+      "name" => "The power of being thankful (7 days)",
+      "description" => "giving thanks to God daily will positively impact our lives. When we pause to acknowledge His blessings it restores us to a state of spiritual peace. In this reading plan you'll find fourteen inspiring messages that will spark an attitude of gratitude in our hearts. Through uplifting Scripture, she illustrates God's never-ending love, inexhaustible grace, and always-accessible presence in our lives.",
+      "days" => ["1Chronicles.23:30","John.14:27","2 Corinthians.12:10","1 Timothy.6:12","Luke.4:32","Philippians.2:14","Romans.5:5","Isaiah.43:19","Titus.2:12","2Corinthians.5:21","2Corinthians.10:5","Matthew.6:26","1Samuel.17:45","Isaiah.61:3"]
+    },
+    {"name" => "temptation", "id" => '3', "description"=> "TTT", "days"=> ["Hebrews.2.18", "Hebrews.4.15", "James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5.8-9"]},
+    {"name"=> "temptation2", "id" => '4', "description"=> "TTT", "days"=> ["James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5.8-9"]},
   ]
 
   def verses
 
-    passage = READING_PLAN.select{ |p| p['id'] = params[:plan_id] }.first["days"][params[:day].to_i]
+    passage = READING_PLAN.select{ |p| p['id'] == params[:plan_id] }.first["days"][params[:day].to_i - 1]
 
     url = "https://bibles.org/v2/eng-ESV/passages.json?q[]=#{passage}"
 
@@ -19,7 +31,9 @@ class PageController < ApplicationController
     c.follow_location = true
     c.max_redirects = 3
     c.password = 'bar'
+    puts c.inspect
     c.perform
+    puts "---------------"
 
     json = JSON.parse(c.body)
 
