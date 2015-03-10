@@ -22,81 +22,65 @@ class PageController < ApplicationController
     },
     {
       "id"=>"5",
-      "days"=>["Deuteronomy.28:58-68","Psalm.94:1-23","Jeremiah.17:5-8","Ezekiel.12:1-20","Matthew.6:25-34","Mark.4:35-41","Luke.8:11-15","Luke.10:38-42","John.14:1-14","Philippians.4:4-9"]
+      "days"=> ["Proverbs.3:5-6", "Philippians.4:6-7", "Matthew.11:28-30", "John.14:27", "Jeremiah.17:5-8", "Colossians.3:15", "2Thessalonians.3:16", "Psalm.55:22", "Proverbs.12:25", "1Peter.5:6-8", "Psalm.23:4", "Hebrews.13:5-6"]
     },
     {
       "id"=>"6",
-      "days"=>["Exodus.12:31-42","Leviticus.25:38-55,Deuteronomy.15:12-18","Isaiah.58:1-12","Jeremiah.34:8-22","John.8:31-38","Romans.6:15-23","1Corinthians.7:17-24","1Corinthians.9:1-23","1Peter.2:11-17","Galatians.5:1-15"]
+      "days"=> ["Matthew.6:14-15","1John.1:9","Isaiah.43:25-26","Acts.3:19","Isaiah.1:18","2.Corinthians.5:17","Ephesians.1:7","Hebrews.10:17","Daniel.9:9","Colossians.1:13-14","Psalm.103:12","Numbers.14:19-21","Micah.7:18-19","Matthew.6:9-15","Mark.11:25","Matthew.26:28"]
     },
     {
       "id"=>"7",
-      "days"=>["1Kings.3:3-15","1Kings.3:16-28","Proverbs.8:1-21","Proverbs.8:22-36","Proverbs.9:1-18","Ecclesiastes.1:12-18,Ecclesiastes.2:12-17","Matthew.12:38-42","1Corinthians.1:18-31","1Corinthians.2:1-13","James.1:5-8,James.3:13-18"]
+      "days"=> ["Proverbs.18:10","Proverbs.3:5-6","Isaiah.41:10","John.14:27","John.16:33","Psalm.46:1-3","2Timothy.1:7","Psalm.16:8","Psalm.55:22","1Peter.5:7","Isaiah 26:3","Psalm 118:14-16","Psalm 119:114-115","Psalm 119:25","Psalm 119:50","Psalm 119:71","Psalm 120:1"]
     },
     {
       "id"=>"8",
-      "days"=>["Exodus.33:7-11,2Chronicles.20:7","Ruth.1:6-22","1Samuel.18:1-4,.1Samuel.19:1-7,1Samuel.20:1-42","2Samuel.15:32-37,.2Samuel.16:15-19,2Samuel.17:1-16","Job.2:11-13,Job.19:13-22","Psalm.55","Proverbs.13:20,Proverbs.14:20,Proverbs.16:28","Mark.2:1-12","John.11:1-44","John.15:1-17"]
+      "days"=> ["James.1:19-20","Proverbs.29:11","James.1:20","Proverbs.19:11","Ecclesiastes.7:9","Proverbs.15:1","Proverbs.15:18","Colossians.3:8","James.4:1-2","Proverbs.16:32","Proverbs.22:24","Matthew.5:22","Psalm.37:8-9","Psalm.7:11","2 Kings.11:9-10","2 Kings.17:18","Proverbs.14:29"]
     },
     {
       "id"=>"9",
-      "days"=>["Psalm.22,Isaiah.52:13-53:12","Matthew.1:18-25,Luke.2:1-21","Luke.3:1-22,Luke.4:1-13","John.2:1-11,John.3:1-21","John.4:1-42","Luke.4:14-44","Matthew.9:9-13,Luke 5:1-11,John.1:35-51","Luke.6:17-49","Luke.11:1-13,Luke.18:1-14","Matthew.13:1-52","Luke.11:14-53","Mark.4:35-5:20","Mark.5:21-43","Matthew.9:35-10:42","Matthew.14:13-36","Luke.15:1-32","Mark.8:1-30","Mark.9:1-29","Luke.10:25-42","John.7:1-52","John.9:1-41","John.11:1-44","Matthew.19:13-30","Matthew.21:1-27","Luke.21:5-38","Matthew.26:17-56","Mark.14:53-15:15","Matthew.27:32-66","Luke.24:1-35,John.20:1-31","Matthew.28:16-20,Luke.24:50-53,Acts.1:3-11"]
+      "days"=> ["Philippians.4:13","Psalm.37:4","Psalm.1:1-3","Proverbs.16:3","1.Kings 2:3","Matthew.16:26-27","Luke.16:10-11","Romans.12:2","Isaiah.41:10","Philippians.4:6","Deuteronomy.8:18","Jeremiah.17:7"]
     },
     {
       "id"=>"10",
-      "days"=>["Luke 1:1-38","Luke 1:39-80","Luke 2","Luke 3","Luke 4","Luke 5","Luke 6","Luke 7","Luke 8:1-25","Luke 8:26-56","Luke 9:1-36","Luke 9:37-62","Luke 10","Luke 11","Luke 12:1-34","Luke 12:35-59","Luke 13","Luke 14","Luke 15","Luke 16","Luke 17","Luke 18","Luke 19","Luke 20","Luke 21","Luke 22:1-38","Luke 22:39-71","Luke 23:1-25","Luke 23:26-56","Luke 24"]
+      "days"=> ["1Corinthians.6:19-20", "1Corinthians.3:16-17","Romans.12:1-2","1Corinthians.10:31","1Timothy.4:8","1Timothy.5:23","Matthew.6:22-23","1Corinthians.15:44","Philippians.1:20","1Corinthians.12:27","Psalm.100:3","Romans.12:4"]
     },
-
+    {
+      "id"=>"11",
+      "days"=> ["Matthew.6:21","Malachi.3:10","Ecclesiastes.5:10","Romans.13:8","Psalm 37:16-17","Proverbs 13:11","Hebrews 13:5","Matthew 19:21","Proverbs 17:16","Matthew 6:24","Luke 3:14","Exodus 22:25","1 Timothy 6:10","Deuteronomy 23:19","Matthew 21:12-13","1 Timothy 6:17-19","Luke 12:33","Deuteronomy 15:7","Matthew 6:1-4","Mark 12:41-44","Proverbs 10:4","Revelation 3:17","Luke 16:13","Matthew 13:22","2 Chronicles 1:11-12","1 Peter 5:2-3","1 Samuel 2:7","Proverbs 3:9"]
+    },
     {
       "id" => "anger",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["Romans.12:17-18,21,Ephesians.4:26,Proverbs.15:1,Prov.19:11"]
     },
     {
       "id" => "anxiety",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["Matthew.6:25,31,33"]
     },
     {
       "id" => "depression",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["Psalm.3:3-5,Psalm.30:5,Psalm.40:1-2,Psalm.42:11,Psalm.147:3"]
     },
     {
       "id" => "fear",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["2Timothy.1:7,Psalm.31:24,Psalm.91:10,Psalm.121:1-2"]
     },
     {
       "id" => "temptation",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["Matthew.26:41,1Corinthians.10:13,James.4:7,2Peter.2:9,Psalm.119:11"]
     },
     {
       "id" => "stress",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
-    },
-    {
-      "id" => "jealousy",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["Matthew.11:28,Philippians.4:11-13,Psalm.9:9,Psalm.27:5,Psalm.34:4"]
     },
     {
       "id" => "lonely",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["Psalm.27:10,Psalm.143:8,Hebrews.13:5,1Peter.5:7"]
     },
     {
       "id" => "worried",
-      "days" => ["Psalm.22,Isaiah.52:13-53:12"]
+      "days" => ["Matthew.6:19-34,1Peter.5:6-7"]
     }
   ]
-
-  def verses2
-    xml = "<?xml version=""1.0"" ?><catalog><book><author>Kelvin</author></book><book><author>Kelvin2</author></book></catalog>"
-    xmlDoc = Document.new(xml)
-
-    #author = XPath.first(xmlDoc, "//author")
-    #XPath.each(xmlDoc, "//author") { |e| puts e.text }
-    #render text: author.text
-
-    root = xmlDoc.root
-    xmlDoc.elements.each("catalog/book/author") {
-      |e| puts e.text
-    }
-    render text: "a"
-  end
 
   def verses
     passage = READING_PLAN.select{ |p| p['id'] == params[:plan_id] }.first["days"][params[:day].to_i - 1]
