@@ -5,11 +5,11 @@ class PageController < ApplicationController
 
   READING_PLAN = [
     {
-      "id" => "1",
+      "id"=> "1",
       "days" => ["1Chronicles.23:30","John.14:27","2Corinthians.12:10,1Timothy.6:12","1Timothy.6:12","Luke.4:32","Philippians.2:14","Romans.5:5","Isaiah.43:19","Titus.2:12","2Corinthians.5:21","2Corinthians.10:5","Matthew.6:26","1Samuel.17:45","Isaiah.61:3"]
     },
     {
-      "id" => "2",
+      "id"=> "2",
       "days" => ["Luke.6:31","Luke.6:35","John.8:13","Romans.12:9","Mark.12:31","Romans.13:10","1Corinthians.13:4-8","1Corinthians.13:13","Ephesians.4:2","1Peter.4:8","1John.4:7","1John.4:18-19","John.15:13","Ephesians.5:25"]
     },
     {
@@ -17,7 +17,7 @@ class PageController < ApplicationController
       "days"=> ["Ephesians.5:33","Colossians.3:14","Proverbs.10:12","Proverbs.17:17","1John.3:16-18","1John.4:8","John.3:16","Psalm.18:1","Matthew.22:27-29","Deuteronomy.10:12-19","Song of Solomon.8:4-8","Matthew.6:24","Matthew.22:37-39","Matthew.23:6-8"]
     },
     {
-      "id" => "4",
+      "id"=> "4",
       "days" => ["James.1:14", "Hebrews.2.18", "Hebrews.4.15", "James.4.7", "Romans.6.6-13", "Ephesians6.10-11", "1Peter.5:8-9"]
     },
     {
@@ -48,38 +48,38 @@ class PageController < ApplicationController
       "id"=>"11",
       "days"=> ["Matthew.6:21","Malachi.3:10","Ecclesiastes.5:10","Romans.13:8","Psalm 37:16-17","Proverbs 13:11","Hebrews 13:5","Matthew 19:21","Proverbs 17:16","Matthew 6:24","Luke 3:14","Exodus 22:25","1 Timothy 6:10","Deuteronomy 23:19","Matthew 21:12-13","1 Timothy 6:17-19","Luke 12:33","Deuteronomy 15:7","Matthew 6:1-4","Mark 12:41-44","Proverbs 10:4","Revelation 3:17","Luke 16:13","Matthew 13:22","2 Chronicles 1:11-12","1 Peter 5:2-3","1 Samuel 2:7","Proverbs 3:9"]
     },
-    {
-      "id" => "anger",
-      "days" => ["Romans.12:17-18,21,Ephesians.4:26,Proverbs.15:1,Prov.19:11"]
-    },
-    {
-      "id" => "anxiety",
-      "days" => ["Matthew.6:25,31,33"]
-    },
-    {
-      "id" => "depression",
-      "days" => ["Psalm.3:3-5,Psalm.30:5,Psalm.40:1-2,Psalm.42:11,Psalm.147:3"]
-    },
-    {
-      "id" => "fear",
-      "days" => ["2Timothy.1:7,Psalm.31:24,Psalm.91:10,Psalm.121:1-2"]
-    },
-    {
-      "id" => "temptation",
-      "days" => ["Matthew.26:41,1Corinthians.10:13,James.4:7,2Peter.2:9,Psalm.119:11"]
-    },
-    {
-      "id" => "stress",
-      "days" => ["Matthew.11:28,Philippians.4:11-13,Psalm.9:9,Psalm.27:5,Psalm.34:4"]
-    },
-    {
-      "id" => "lonely",
-      "days" => ["Psalm.27:10,Psalm.143:8,Hebrews.13:5,1Peter.5:7"]
-    },
-    {
-      "id" => "worried",
-      "days" => ["Matthew.6:19-34,1Peter.5:6-7"]
-    }
+    #{
+    #  "id" => "anger",
+    #  "days" => ["Romans.12:17-18,21,Ephesians.4:26,Proverbs.15:1,Prov.19:11"]
+    #},
+    #{
+    #  "id" => "anxiety",
+    #  "days" => ["Matthew.6:25,31,33"]
+    #},
+    #{
+    #  "id" => "depression",
+    #  "days" => ["Psalm.3:3-5,Psalm.30:5,Psalm.40:1-2,Psalm.42:11,Psalm.147:3"]
+    #},
+    #{
+    #  "id" => "fear",
+    #  "days" => ["2Timothy.1:7,Psalm.31:24,Psalm.91:10,Psalm.121:1-2"]
+    #},
+    #{
+    #  "id" => "temptation",
+    #  "days" => ["Matthew.26:41,1Corinthians.10:13,James.4:7,2Peter.2:9,Psalm.119:11"]
+    #},
+    #{
+    #  "id" => "stress",
+    #  "days" => ["Matthew.11:28,Philippians.4:11-13,Psalm.9:9,Psalm.27:5,Psalm.34:4"]
+    #},
+    #{
+    #  "id" => "lonely",
+    #  "days" => ["Psalm.27:10,Psalm.143:8,Hebrews.13:5,1Peter.5:7"]
+    #},
+    #{
+    #  "id" => "worried",
+    #  "days" => ["Matthew.6:19-34,1Peter.5:6-7"]
+    #}
   ]
 
   def verses
@@ -100,37 +100,31 @@ class PageController < ApplicationController
       text += e.elements['text'].text
       text += '<div class=scripture>' + e.elements['display'].text + '</div>'
     end
+
+    log_usage('READ')
+
     render text: text
   end
 
-  def test
-    passage = READING_PLAN.select{ |p| p['id'] == params[:plan_id] }.first["days"][params[:day].to_i - 1]
+  def finished
+    log_usage('FINISHED')
+    render nothing: true, status: 200
+  end
 
-    url = "https://bibles.org/v2/eng-ESV/passages.json?q[]=#{passage}"
+  def answered
+    log_usage('ANSWER')
+    render nothing: true, status: 200
+  end
 
-    #url = "https://bibles.org/v2/eng-ESV/passages.xml?q[]=John3.1,Luke2.1"
+  private
 
-    c = Curl::Easy.new(url)
-    c.http_auth_types = :basic
-    c.username = 'wqZRG1WwyhSSh35OZdjGpRJq3acON5PT1YQI1IeW'
-    c.follow_location = true
-    c.max_redirects = 3
-    c.password = 'bar'
-    puts c.inspect
-    c.perform
-    puts "---------------"
-
-    json = JSON.parse(c.body)
-
-    #raise '1'
-    passages = ''
-    json['passages'].each do |passage|
-      passages += "#{passage['text']} (#{passage['reference']})<br>"
-    end
-
-    render :text => "#{passages}"
-
-    # "Scripture quotations marked (ESV) are from The Holy Bible, English Standard Version®, copyright © 2001 by Crossway Bibles, a publishing ministry of Good News Publishers. Used by permission. All rights reserved."
+  def log_usage(usage_type)
+    Usage.create!(
+      plan_id: params[:plan_id].to_i,
+      day: params[:day].to_i,
+      user_id: params[:user_id],
+      usage_type: usage_type
+    )
   end
 
 end

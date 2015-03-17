@@ -2,6 +2,8 @@ Rails.application.routes.draw do
   resources :high_scores
 
   get 'verses' => 'page#verses'
+  get 'finished' => 'page#finished'
+  get 'answered' => 'page#answered'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
