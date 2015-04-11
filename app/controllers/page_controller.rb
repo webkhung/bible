@@ -117,7 +117,7 @@ class PageController < ApplicationController
   end
 
   def report
-    
+
   end
 
   private
@@ -127,6 +127,7 @@ class PageController < ApplicationController
       plan_id: params[:plan_id].to_i,
       day: params[:day].to_i,
       user_id: params[:user_id],
+      user_name: params[:user_name],
       ip: request.ip,
       usage_type: usage_type
     )

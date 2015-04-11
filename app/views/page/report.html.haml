@@ -1,6 +1,7 @@
 %table{ border: 1}
   %tr
     %td user id
+    %td user name
     %td ip
     %td usage_type
     %td plan id
@@ -10,6 +11,7 @@
   - Usage.all.each do |usage|
     %tr
       %td= usage.user_id
+      %td= usage.user_name
       %td= usage.ip
       %td= usage.usage_type
       %td= usage.plan_id
