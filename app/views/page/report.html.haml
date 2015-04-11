@@ -1,0 +1,17 @@
+%table{ border: 1}
+  %tr
+    %td user id
+    %td ip
+    %td usage_type
+    %td plan id
+    %td day
+    %td created_at
+
+  - Usage.all.each do |usage|
+    %tr
+      %td= usage.user_id
+      %td= usage.ip
+      %td= usage.usage_type
+      %td= usage.plan_id
+      %td= usage.day
+      %td= usage.created_at

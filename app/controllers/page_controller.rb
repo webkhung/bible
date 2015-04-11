@@ -116,6 +116,10 @@ class PageController < ApplicationController
     render nothing: true, status: 200
   end
 
+  def report
+    
+  end
+
   private
 
   def log_usage(usage_type)
@@ -123,6 +127,7 @@ class PageController < ApplicationController
       plan_id: params[:plan_id].to_i,
       day: params[:day].to_i,
       user_id: params[:user_id],
+      ip: request.ip,
       usage_type: usage_type
     )
   end
