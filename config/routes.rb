@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'finished' => 'page#finished'
   get 'answered' => 'page#answered'
   get 'report' => 'page#report'
+  get 'users' => 'page#users'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

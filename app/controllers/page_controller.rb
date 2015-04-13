@@ -120,6 +120,14 @@ class PageController < ApplicationController
 
   end
 
+  def users
+    output = '<li id=user-header>USERS:</li>';
+    Usage.users.each do |user|
+      output << "<li>#{user.user_name}</li>"
+    end
+    render text: "<ul>#{output}</ul>"
+  end
+
   private
 
   def log_usage(usage_type)
