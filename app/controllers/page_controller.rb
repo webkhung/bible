@@ -145,7 +145,7 @@ class PageController < ApplicationController
       day: params[:day].to_i,
       user_id: params[:user_id],
       user_name: params[:user_name],
-      details: params[:details],
+      details: params[:details].presence,
       ip: request.ip,
       usage_type: usage_type
     )
