@@ -116,17 +116,26 @@ class PageController < ApplicationController
     render nothing: true, status: 200
   end
 
+  def usage
+    log_usage(params[:usage_type])
+    render nothing: true, status: 200
+  end
+
   def report
 
   end
 
   def users
-    output = '<li id=user-header>USERS:</li>';
-    Usage.users.each do |user|
-      output << "<li>#{user.user_name}</li>"
+    output = '<li id=user-header>LEADERBOARD:</li>';
+    Usage.group('user_name').order('count(*) desc').count.each do |user|
+      output << "<li>#{user[0]}</li>"
     end
     render text: "<ul>#{output}</ul>"
   end
+
+  #def finished_leaders
+  #  Usage.where('usage_type = ?', 'FINISHED').group('user_name').order('count(*) desc').count
+  #end
 
   private
 
@@ -136,6 +145,7 @@ class PageController < ApplicationController
       day: params[:day].to_i,
       user_id: params[:user_id],
       user_name: params[:user_name],
+      details: params[:details],
       ip: request.ip,
       usage_type: usage_type
     )

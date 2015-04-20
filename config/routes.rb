@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'verses' => 'page#verses'
   get 'finished' => 'page#finished'
   get 'answered' => 'page#answered'
+  get 'usage' => 'page#usage'
   get 'report' => 'page#report'
   get 'users' => 'page#users'
 

@@ -4,16 +4,18 @@
     %td user name
     %td ip
     %td usage_type
+    %td details
     %td plan id
     %td day
     %td created_at
 
-  - Usage.all.each do |usage|
+  - Usage.all.order('id desc').each do |usage|
     %tr
       %td= usage.user_id
       %td= usage.user_name
       %td= usage.ip
       %td= usage.usage_type
+      %td= usage.details
       %td= usage.plan_id
       %td= usage.day
       %td= usage.created_at
