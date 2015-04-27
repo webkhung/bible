@@ -7,7 +7,7 @@ class PageController < ApplicationController
   READING_PLAN = [
     {
       "id"=> "1",
-      "days" => ["1Chronicles.23:30","John.14:27","2Corinthians.12:10","1Timothy.6:12","Luke.4:32","Philippians.2:14","Romans.5:5","Isaiah.43:19","Titus.2:12","2Corinthians.5:21","2Corinthians.10:5","Matthew.6:26","1Samuel.17:45","Isaiah.61:3"]
+      "days" => ["1Chronicles.23:30","John.14:27","Romans.5:5","Matthew.6:26","Psalm.20:4","Colossians.3:17","1Thessalonians.5:18","James.1:17","Philippians.4:6"]
     },
     {
       "id"=> "2",
