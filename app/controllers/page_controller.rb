@@ -39,7 +39,7 @@ class PageController < ApplicationController
     },
     {
       "id"=>"9",
-      "days"=> ["Philippians.4:13","Psalm.37:4","Psalm.1:1-3","Proverbs.16:3","1.Kings 2:3","Matthew.16:26-27","Luke.16:10-11","Romans.12:2","Isaiah.41:10","Philippians.4:6","Deuteronomy.8:18","Jeremiah.17:7"]
+      "days"=> ["Philippians.4:13","Psalm.37:4","Psalm.1:1-3","Proverbs.16:3","1.Kings.2:3","Matthew.16:26-27","Luke.16:10-11","Romans.12:2","Isaiah.41:10","Philippians.4:6","Deuteronomy.8:18","Jeremiah.17:7"]
     },
     {
       "id"=>"10",
@@ -128,7 +128,7 @@ class PageController < ApplicationController
 
   def users
     output = '<li id=user-header>LEADERBOARD:</li>';
-    Usage.group('user_name').order('count(*) desc').count.each do |user|
+    Usage.where("usage_type not like 'OPEN'").group('user_name').order('count(*) desc').count.each do |user|
       output << "<li>#{user[0]}</li>"
     end
     render text: "<ul>#{output}</ul>"
