@@ -3,10 +3,11 @@ require 'rexml/document'
 class PageController < ApplicationController
   include REXML
 
+  # you can put two verses together  "2Corinthians.12:10,1Timothy.6:12"
   READING_PLAN = [
     {
       "id"=> "1",
-      "days" => ["1Chronicles.23:30","John.14:27","2Corinthians.12:10,1Timothy.6:12","1Timothy.6:12","Luke.4:32","Philippians.2:14","Romans.5:5","Isaiah.43:19","Titus.2:12","2Corinthians.5:21","2Corinthians.10:5","Matthew.6:26","1Samuel.17:45","Isaiah.61:3"]
+      "days" => ["1Chronicles.23:30","John.14:27","2Corinthians.12:10","1Timothy.6:12","Luke.4:32","Philippians.2:14","Romans.5:5","Isaiah.43:19","Titus.2:12","2Corinthians.5:21","2Corinthians.10:5","Matthew.6:26","1Samuel.17:45","Isaiah.61:3"]
     },
     {
       "id"=> "2",
@@ -132,10 +133,6 @@ class PageController < ApplicationController
     end
     render text: "<ul>#{output}</ul>"
   end
-
-  #def finished_leaders
-  #  Usage.where('usage_type = ?', 'FINISHED').group('user_name').order('count(*) desc').count
-  #end
 
   private
 
