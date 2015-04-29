@@ -9,7 +9,7 @@
     %td day
     %td created_at
 
-  - Usage.all.order('id desc').each do |usage|
+  - Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin'").order('DATE(created_at) desc, user_name, created_at desc').each do |usage|
     %tr
       %td= usage.user_id
       %td= usage.user_name
