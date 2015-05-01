@@ -18,4 +18,4 @@
       %td= usage.details
       %td= usage.plan_id
       %td= usage.day
-      %td= usage.created_at
+      %td= usage.created_at.in_time_zone("Pacific Time (US & Canada)")
