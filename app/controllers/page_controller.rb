@@ -127,8 +127,8 @@ class PageController < ApplicationController
   end
 
   def users
-    output = '<li id=user-header>LEADERBOARD:</li>';
-    Usage.where("usage_type not like 'OPEN'").group('user_name').order('count(*) desc').count.each do |user|
+    output = '<li id=user-header>WEEKLY ACTIVE USERS:</li>';
+    Usage.where("usage_type not like 'OPEN' and user_name is not null and created_at > ?", 1.week.ago).group('user_name').order('count(*) desc').count.each do |user|
       output << "<li>#{user[0]}</li>"
     end
     render text: "<ul>#{output}</ul>"
