@@ -1,3 +1,8 @@
+%p
+  = link_to 'default', report_path()
+  = link_to 'sort by users', report_path(sort: 'users')
+  = link_to 'sort by time', report_path(sort: 'time')
+
 %table{ border: 1}
   %tr
     %td user id
@@ -9,7 +14,7 @@
     %td day
     %td created_at
 
-  - Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas'").order('DATE(created_at) desc, user_name, created_at desc').each do |usage|
+  - @users.each do |usage|
     %tr
       %td= usage.user_id
       %td= usage.user_name

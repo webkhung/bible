@@ -123,7 +123,12 @@ class PageController < ApplicationController
   end
 
   def report
-
+    order_sql = case params['sort']
+    when 'users' then 'user_name, created_at desc'
+    when 'time' then 'created_at desc'
+    else 'DATE(created_at) desc, user_name, created_at desc'
+    end
+    @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas'").order(order_sql)
   end
 
   def users
