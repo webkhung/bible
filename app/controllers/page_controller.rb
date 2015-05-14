@@ -131,12 +131,37 @@ class PageController < ApplicationController
     @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas'").order(order_sql)
   end
 
+  def users_count
+    users = Usage.where("usage_type not like 'OPEN' and user_name is not null and created_at > ?", 1.week.ago).group('user_name').order('count(*) desc').count
+    render text: "<div id=user-header>#{users.length} weekly active Bible app users.  Thank you for being one of them!</div>"
+  end
+
   def users
-    output = '<li id=user-header>WEEKLY ACTIVE USERS:</li>';
-    Usage.where("usage_type not like 'OPEN' and user_name is not null and created_at > ?", 1.week.ago).group('user_name').order('count(*) desc').count.each do |user|
+    users = Usage.where("usage_type not like 'OPEN' and user_name is not null and created_at > ?", 1.week.ago).group('user_name').order('count(*) desc').count
+    output = "<li id=user-header>#{users.length} WEEKLY ACTIVE USERS:</li>";
+    users.each do |user|
       output << "<li>#{user[0]}</li>"
     end
     render text: "<ul>#{output}</ul>"
+  end
+
+  def bg_rating
+    @rating = Usage.where("usage_type like 'RATE-BG'").select('details').group('details').order('details asc').count
+
+    output = {}
+    output['low'] = []
+    output['high'] = []
+
+    @rating.each do |rate|
+      rating, bg = rate[0].split('-')
+      if ['1','2'].include? rating
+        output['low'] << bg
+      elsif ['5'].include? rating
+        output['high'] << bg
+      end
+    end
+
+    render text: output.to_json
   end
 
   private

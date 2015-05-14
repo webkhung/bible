@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'usage' => 'page#usage'
   get 'report' => 'page#report'
   get 'users' => 'page#users'
+  get 'bg_rating' => 'page#bg_rating'
+  get 'users_count' => 'page#users_count'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
