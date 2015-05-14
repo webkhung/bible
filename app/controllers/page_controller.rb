@@ -146,7 +146,7 @@ class PageController < ApplicationController
   end
 
   def bg_rating
-    @rating = Usage.where("usage_type like 'RATE-BG'").select('details').group('details').order('details asc').count
+    @rating = Usage.where("usage_type like 'RATE-BG'").select('details').group('details').order('count(*) desc').count
 
     output = {}
     output['low'] = []
