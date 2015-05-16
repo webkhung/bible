@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users' => 'page#users'
   get 'bg_rating' => 'page#bg_rating'
   get 'users_count' => 'page#users_count'
+  get 'delete_users' => 'page#delete_users'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

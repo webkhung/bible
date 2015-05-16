@@ -145,6 +145,11 @@ class PageController < ApplicationController
     render text: "<ul>#{output}</ul>"
   end
 
+  def delete_users
+    Usage.delete_all("user_name like 'kelvin'")
+    render text: 'ok'
+  end
+
   def bg_rating
     @rating = Usage.where("usage_type like 'RATE-BG'").select('details').group('details').order('count(*) desc').count
 
