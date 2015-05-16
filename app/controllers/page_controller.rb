@@ -153,6 +153,7 @@ class PageController < ApplicationController
     output['high'] = []
     output['low-count'] = []
     output['high-count'] = []
+    output['total'] = 0
 
     @rating.each do |rate|
       rating, bg = rate[0].split('-')
@@ -163,6 +164,7 @@ class PageController < ApplicationController
         output['high'] << bg
         output['high-count'] << rate[1]
       end
+      output['total'] += rate[1]
     end
 
     render text: output.to_json
