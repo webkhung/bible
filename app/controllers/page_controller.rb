@@ -151,13 +151,17 @@ class PageController < ApplicationController
     output = {}
     output['low'] = []
     output['high'] = []
+    output['low-count'] = []
+    output['high-count'] = []
 
     @rating.each do |rate|
       rating, bg = rate[0].split('-')
       if ['1','2'].include? rating
         output['low'] << bg
+        output['low-count'] << rate[1]
       elsif ['5'].include? rating
         output['high'] << bg
+        output['high-count'] << rate[1]
       end
     end
 
