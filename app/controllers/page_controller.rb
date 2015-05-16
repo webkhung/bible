@@ -123,6 +123,8 @@ class PageController < ApplicationController
   end
 
   def report
+    @usage_by_date = Usage.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas'").group('date(created_at)').order('date(created_at) desc').count('distinct(user_name)')
+
     order_sql = case params['sort']
     when 'users' then 'user_name, created_at desc'
     when 'time' then 'created_at desc'
