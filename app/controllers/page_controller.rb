@@ -147,6 +147,14 @@ class PageController < ApplicationController
     render text: "<ul>#{output}</ul>"
   end
 
+  def memorized_verses
+    memorized = []
+    Usage.where("usage_type in ('ANSWERED_CORRECT') and user_id like ?", params['user_id']).order('plan_id, day').each do |plan|
+      memorized << [plan.plan_id, plan.day]
+    end
+    render text: memorized.to_json
+  end
+
   def delete_users
     Usage.delete_all("user_name like 'kelvin'")
     render text: 'ok'
