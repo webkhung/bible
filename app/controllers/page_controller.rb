@@ -161,7 +161,7 @@ class PageController < ApplicationController
   end
 
   def bg_rating
-    @rating = Usage.where("usage_type like 'RATE-BG'").select('details').group('details').order('count(*) desc').count
+    @rating = Usage.where("usage_type like 'RATE-BG' and created_at > '2015-05-21'").select('details').group('details').order('count(*) desc').count
 
     output = {}
     output['low'] = []
@@ -172,7 +172,7 @@ class PageController < ApplicationController
 
     @rating.each do |rate|
       rating, bg = rate[0].split('-')
-      if ['1','2'].include? rating
+      if ['1'].include? rating
         output['low'] << bg
         output['low-count'] << rate[1]
       elsif ['5'].include? rating
