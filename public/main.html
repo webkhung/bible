@@ -1,0 +1,67 @@
+<html>
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Lustria|Lato:300,400,700italic|Courgette' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <link href='animate.css' rel='stylesheet' type='text/css'>
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="utils.js" type="text/javascript"></script>
+    <script src="reading_plan.js" type="text/javascript"></script>
+    <script src="jqmeter.min.js" type="text/javascript"></script>
+    <script src="jquery.lettering.js" type="text/javascript"></script>
+    <script src="jquery.textillate.js" type="text/javascript"></script>
+    <script src="circle-progress.js"></script>
+    <title>Bible reading plan</title>
+</head>
+<body style="zoom: 1; position: relative;">
+<div class="bg"></div>
+<div class="bg hidden"></div>
+<div class='maincontainer'>
+
+    <a id='new-plan-link' href='#'>
+        <img src='images/add.png' style='vertical-align:middle'>
+        <div style='font-size: 16px'> Add Plan</div>
+    </a>
+
+    <a id='memorized-link' href='#'>
+        <span id='memorized-count'></span>
+        <span id='memorized-label'>Memorized <span>&#9660;</span></span>
+    </a>
+
+    <div id='memorized-verses-container' class='popup'>
+        <div id='memorized-verses'></div>
+        <div style='text-align: center'><a id='memorized-close' class='myButton' href='#'>Close</a></div>
+    </div>
+
+    <div id='plans-selector' class='popup'></div>
+
+    <div id='user-name-container'>
+        <h1>Hello! What's your display name?</h1>
+        <input id=user-name type=text />
+        <div style='text-align: center'><a id='user-name-submit' class='myButton' href='#'>Next</a></div>
+    </div>
+
+    <div id='users'></div>
+
+    <div id='passages-container'>
+        <div id='passages'></div>
+        <div id='message'></div>
+        <div style='text-align:center;'>
+            <div class='buttons-container'>
+                <a id='reveal-button' class='wide' href='#'></a>
+                <a id='hint-button' class='wide' href='#'>Need a Hint?</a>
+            </div>
+            <div id='ticks' style='display: none'>
+                <span class='tick-circle'><span>&#10004;</span></span>
+                <span class='tick-circle'><span>&#10004;</span></span>
+                <span class='tick-circle'><span>&#10004;</span></span>
+            </div>
+        </div>
+    </div>
+
+    <div id='bottom'>
+        <div id='added-plans'></div>
+        <div id='completed-plans'></div>
+    </div>
+</div>
+</body>
+</html>
