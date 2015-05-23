@@ -1,9 +1,8 @@
 <html>
 <head>
-    <link href='http://fonts.googleapis.com/css?family=Lustria|Lato:300,400,700italic|Courgette' rel='stylesheet' type='text/css'>
     <link href='style.css' rel='stylesheet' type='text/css'>
     <link href='animate.css' rel='stylesheet' type='text/css'>
-    <link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji">
+    <!--<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji">-->
     <script src="jquery.js" type="text/javascript"></script>
     <script src="utils.js" type="text/javascript"></script>
     <script src="reading_plan.js" type="text/javascript"></script>
@@ -16,7 +15,7 @@
 </head>
 <body style="zoom: 1; position: relative;">
 
-<a href='#' onclick="chrome.webstore.install()" id="install-button">Add to Chrome</a>
+<a href='#' onclick="chrome.webstore.install('https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji')" id="install-button">Add to Chrome</a>
 <script>
     if (chrome.app.isInstalled) {
         document.getElementById('install-button').style.display = 'none';
