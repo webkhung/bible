@@ -15,10 +15,16 @@
 </head>
 <!--<body style="zoom: 1; position: relative;">-->
 <body>
-<a href='#' onclick="chrome.webstore.install('https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji')" id="install-button">Add to Chrome</a>
+<a href='#' onclick="chrome.webstore.install('https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji', handleInstallSuccess, handleInstallFailure)" id="install-button">Add to Chrome</a>
 <script>
     if (chrome.app.isInstalled) {
         document.getElementById('install-button').style.display = 'none';
+    }
+    function handleInstallSuccess() {
+    }
+
+    function handleInstallFailure(error) {
+        console.log(error);
     }
 </script>
 <!--<div class="bg"></div>-->
