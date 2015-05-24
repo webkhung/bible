@@ -774,3 +774,34 @@ input.wrong {
 #memorized-verses h2 {
     color: #fffe58;
 }
+
+#install-button {
+    background-color: #ffffff;
+    -moz-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    border:1px solid #3e3e3e;
+    display:inline-block;
+    cursor:pointer;
+    color: #424242;
+    font-family:arial;
+    font-size:20px;
+    padding:22px 53px;
+    text-decoration:none;
+}
+
+#install-button:hover {
+    background-color: #eeeeee;
+}
+
+#install-button:active {
+    position:relative;
+    top:1px;
+}
+
+#install-button img {
+    position: relative;
+    width: 19px;
+    top: 2px;
+    right: 4px;
+}
