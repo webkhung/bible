@@ -835,4 +835,19 @@ $( document ).ready(function() {
 //    $('#rate1, #rate2, #rate3, #rate4, #rate5').click(rateBackgroundClicked);
 
     rollBg();
+
+    $('#install-button').click(function(e){
+        e.preventDefault();
+        chrome.webstore.install('https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji', handleInstallSuccess, handleInstallFailure);
+    });
 });
+
+if (chrome.app.isInstalled) {
+    document.getElementById('install-button').style.display = 'none';
+}
+function handleInstallSuccess() {
+}
+
+function handleInstallFailure(error) {
+    console.log(error);
+}
