@@ -813,3 +813,8 @@ input.wrong {
     color: white;
     font-weight: bold;
 }
+
+#rotate-text {
+    font-size: 25px;
+    color: white;
+}
