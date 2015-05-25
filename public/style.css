@@ -1,5 +1,6 @@
 body {
     margin: 0px;
+    background-size:cover;
 }
 
 
@@ -804,4 +805,11 @@ input.wrong {
     width: 19px;
     top: 2px;
     right: 4px;
+}
+
+#install-completed, #install-failed {
+    display: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
 }

@@ -4,8 +4,8 @@ var userId = '';
 var userName = '';
 var htmlRender = new HTMLRender();
 var DAILY_MEMORIZED_GOAL = 4;
-//var HOST = 'www.bibleverseapp.com';
-var HOST = 'localhost:3001';
+var HOST = 'www.bibleverseapp.com';
+//var HOST = 'localhost:3001';
 var memorizedCount = 0;
 var game = new Game();
 var textAnimations = ['rotateIn', 'rotateInDownLeft', 'rotateInDownRight', 'fadeIn', 'fadeInUp', 'fadeInDown',
@@ -768,76 +768,29 @@ $( document ).ready(function() {
         objPlans[objPlan.id] = objPlan;
     });
 
-//    chrome.storage.sync.get(null, function (userData) {
-//        console.log(userData);
-//
-//        if (userData === undefined){
-//            return;
-//        }
-
-
     userId = 'testuser';
     userName = 'testuser';
-
-//        for(var planId in userData["plans"]){
     objPlans['1'].added = true;
-//            objPlans['1'].completedOn = userData["plans"][planId];
-//        };
-
-//        if(userData['userName'] === undefined || userData['userName'] == '') {
-//            htmlRender.screenUserName();
-//        }
-//        else {
-//            userName = userData['userName'];
-//            versesNext();
-//        }
 
     versesNext();
-
-//        rated = userData['rated'];
-
-//        $('#superuser-name').text(userData['userName']);
-//        $('#help').show();
-//    });
-
-//    $('#feedback-close').click(feedbackCloseClicked);
-//    $('#help').click(helpClicked);
     $('#reveal-button, #hint-button').click(revealClicked);
-//    $('#user-name-submit').click(userNameSubmitClicked);
-//    $('#rate-yes-button').click(rateYesClicked);
-//    $('#rate-no-button').click(rateNoClicked);
-
     $('.maincontainer').on('click', '#new-plan-link', function(){
         htmlRender.screenPlanSelector();
         $('#passages-container').hide();
     });
-
     $('#plans-selector').on('click', '#plans-close', function(){
         $('.popup').hide();
         $('#passages-container, #new-plan-link').show();
     });
-
-//    htmlRender.fetchUsers();
-//    htmlRender.fetchBgRating();
-
     $('#memorized-link').click(memorizedClicked);
     $('#memorized-close').click(memorizedCloseClicked);
-
-
-//    $('#add-day').click(function(){
-//        var tomorrow = new Date(today);
-//        tomorrow.setDate(tomorrow.getDate()+1);
-//        today = formatDate(tomorrow);
-//        htmlRender.showAddedPlans();
-//        versesNext();
-//    });
-
-//    $('#rate1, #rate2, #rate3, #rate4, #rate5').click(rateBackgroundClicked);
 
     rollBg();
 
     $('#install-button').click(function(e){
         e.preventDefault();
+        $.get('http://' + HOST + '/usage', { usage_type: 'CLICK-INSTALL', user_id: userId, user_name: userName });
+
         chrome.webstore.install('https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji', handleInstallSuccess, handleInstallFailure);
     });
 });
@@ -846,8 +799,12 @@ if (chrome.app.isInstalled) {
     document.getElementById('install-button').style.display = 'none';
 }
 function handleInstallSuccess() {
+    $('#install-button').hide();
+    $('#install-completed').show();
 }
 
 function handleInstallFailure(error) {
+    $('#install-button').hide();
+    $('#install-failed').show();
     console.log(error);
 }
