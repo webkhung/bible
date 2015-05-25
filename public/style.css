@@ -3,6 +3,9 @@ body {
     background-size:cover;
 }
 
+p {
+    margin: 0;
+}
 
 #help {
     color: #ffffff;
@@ -776,6 +779,16 @@ input.wrong {
     color: #fffe58;
 }
 
+#rotate-text {
+    font-size: 26px;
+    color: white;
+    padding-bottom: 20px;
+}
+
+#not-chrome {
+    padding-bottom: 10px;
+}
+
 .white-button {
     background-color: #ffffff;
     -moz-border-radius:5px;
@@ -800,6 +813,7 @@ input.wrong {
 
 #install-button {
     display: none;
+    display: inline-block;
 }
 
 #install-button:hover {
@@ -816,10 +830,4 @@ input.wrong {
     width: 19px;
     top: 2px;
     right: 4px;
-}
-
-#rotate-text {
-    font-size: 25px;
-    color: white;
-    padding-bottom: 20px;
 }
