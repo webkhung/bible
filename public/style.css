@@ -776,7 +776,7 @@ input.wrong {
     color: #fffe58;
 }
 
-#install-button {
+.white-button {
     background-color: #ffffff;
     -moz-border-radius:5px;
     -webkit-border-radius:5px;
@@ -789,6 +789,17 @@ input.wrong {
     font-size:20px;
     padding:22px 53px;
     text-decoration:none;
+}
+
+.white-text {
+    display: none;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+#install-button {
+    display: none;
 }
 
 #install-button:hover {
@@ -807,14 +818,8 @@ input.wrong {
     right: 4px;
 }
 
-#install-completed, #install-failed {
-    display: none;
-    font-size: 20px;
-    color: white;
-    font-weight: bold;
-}
-
 #rotate-text {
     font-size: 25px;
     color: white;
+    padding-bottom: 20px;
 }

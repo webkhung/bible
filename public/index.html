@@ -11,13 +11,12 @@
     <script src="jquery.lettering.js" type="text/javascript"></script>
     <script src="jquery.textillate.js" type="text/javascript"></script>
     <script src="jquery.simple-text-rotator.min.js" type="text/javascript"></script>
-    <title>Daily Bible Verse</title>
+    <title>Daily Bible Verse New Tab Replacement Chrome Extension</title>
 </head>
 <body style="zoom: 1; position: relative;">
 <div class="bg"></div>
 <div class="bg hidden"></div>
 <div class='maincontainer'>
-
     <a id='new-plan-link' href='#'>
         <img src='images/add.png' style='vertical-align:middle'>
         <div style='font-size: 16px'> Add Plan</div>
@@ -54,9 +53,15 @@
     <div id='bottom'>
         <div style='text-align: center;padding-bottom:70px'>
             <p id='rotate-text'>Daily <span class="rotate">Bible Verse, Blessing, Memorization, Devotion, Photography</span> on your new tab page.</p>
-            <a id="install-button" class='myButtonSmall'><img src="images/plus-24.png"> Add Bible Verse to Chrome</a>
-            <p id='install-completed'>&#10004; Daily Bible Verse is installed. Open a new tab to launch.</p>
-            <p id='install-failed'>&#x2716; Daily Bible Verse had trouble installing.</p>
+            <a id="install-button" class='white-button'><img src="images/plus-24.png"> Add Bible Verse to Chrome</a>
+
+            <p id="not-chrome" class='white-text'>
+                Daily Bible Verse runs on Google Chrome.<br>
+                <a target="_blank" href="https://www.google.com/intl/en_ca/chrome/browser/" class="white-button">&#x25BC; Download Chrome</a>
+            </p>
+
+            <p id='install-completed' class='white-text'>&#10004; Daily Bible Verse is installed. Open a new tab to launch.</p>
+            <p id='install-failed' class='white-text'>&#x2716; Daily Bible Verse had trouble installing.</p>
         </div>
         <div id='added-plans'></div>
         <div id='completed-plans'></div>

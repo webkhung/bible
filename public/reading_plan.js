@@ -787,17 +787,18 @@ $( document ).ready(function() {
 
     rollBg();
 
+    checkChrome();
+
     $('#install-button').click(function(e){
         e.preventDefault();
         $.get('http://' + HOST + '/usage', { usage_type: 'CLICK-INSTALL', user_id: userId, user_name: userName });
-
         chrome.webstore.install('https://chrome.google.com/webstore/detail/jogajkcgclkfedbhdcopmpmeeophkkji', handleInstallSuccess, handleInstallFailure);
     });
 
     $(".rotate").textrotator({
         animation: "dissolve", // You can pick the way it animates when rotating through words. Options are dissolve (default), fade, flip, flipUp, flipCube, flipCubeUp and spin.
         separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
-        speed: 2000 // How many milliseconds until the next word show.
+        speed: 3000 // How many milliseconds until the next word show.
     });
 });
 
@@ -813,4 +814,18 @@ function handleInstallFailure(error) {
     $('#install-button').hide();
     $('#install-failed').show();
     console.log(error);
+}
+
+function checkChrome(){
+    var isChrome = window.chrome,
+        vendorName = window.navigator.vendor;
+    if(isChrome !== null && vendorName === "Google Inc.") {
+        if (chrome.app.isInstalled) {
+            $('#install-completed').show();
+        } else {
+            $('#install-button').show();
+        }
+    } else {
+        $('#not-chrome').show();
+    }
 }
