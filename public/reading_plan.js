@@ -823,7 +823,7 @@ function checkChrome(){
         if (chrome.app.isInstalled) {
             $('#install-completed').show();
         } else {
-            $('#install-button').show();
+            $('#install-button').css('display','inline-block');
         }
     } else {
         $('#not-chrome').show();

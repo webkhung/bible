@@ -813,7 +813,6 @@ input.wrong {
 
 #install-button {
     display: none;
-    display: inline-block;
 }
 
 #install-button:hover {
