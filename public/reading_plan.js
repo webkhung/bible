@@ -131,7 +131,6 @@ function saveData(){
     }
     userData['userId'] =  userId;
     userData['userName'] =  userName;
-//    chrome.storage.sync.set(userData);
 }
 
 function Game(){
@@ -330,44 +329,7 @@ function HTMLRender(){
         });
     }
 
-    this.fetchBgRating = function(){
-
-        $.get('http://' + HOST + '/bg_rating', function(data){
-            var json = JSON.parse(data);
-            $ul = $('<ul />');
-            $('#bg-rating').append($ul);
-
-            $ul.append('<li>TOTAL VOTES: '+ json['total'] +'</li><li></li>');
-            $ul.append('<li><span class=symbol>&#10003;</span> HIGHLY RATED:</li>');
-            for(var i=0; i < json['high'].length && i < 5; i++){
-                var linkBg = $('<a />').attr({
-                    href: 'images/' + json['high'][i],
-                    target: '_blank'
-                }).text(json['high'][i].split('.')[0]);
-                linkBg.attr('data-rate', 'high');
-                linkBg.click(ratedBgClicked);
-                var li = $('<li />');
-                $ul.append(li.append(linkBg));
-            }
-
-            $ul.append('<li><span class=symbol>&#10008;</span> LOWLY RATED:</li>');
-            for(var i=0; i < json['low'].length && i < 5; i++){
-                var linkBg = $('<a />').attr({
-                    href: 'images/' + json['low'][i],
-                    target: '_blank'
-                }).text(json['low'][i].split('.')[0]);
-                linkBg.attr('data-rate', 'low');
-                linkBg.click(ratedBgClicked);
-                var li = $('<li />');
-                $ul.append(li.append(linkBg));
-            }
-        });
-    }
-
     this.fetchUsers = function(){
-//        $.get('http://' + HOST + '/users', function(data){
-//            $('#users').html(data);
-//        });
         $.get('http://' + HOST + '/users_count', function(data){
             $('#users-count').html(data);
         });
@@ -475,22 +437,6 @@ function HTMLRender(){
         return 'radial-gradient(at top left, '+c1.rgb+', '+c2.rgb+')';
     }
 
-    this.newGradient2 = function() {
-        var c1 = {
-            r: Math.floor(Math.random()*255),
-            g: Math.floor(Math.random()*255),
-            b: Math.floor(Math.random()*255)
-        };
-        var c2 = {
-            r: Math.floor(Math.random()*255),
-            g: Math.floor(Math.random()*255),
-            b: Math.floor(Math.random()*255)
-        };
-        c1.rgb = 'rgb('+c1.r+','+c1.g+','+c1.b+')';
-        c2.rgb = 'rgb('+c2.r+','+c2.g+','+c2.b+')';
-        return 'radial-gradient(at top left, '+c1.rgb+', '+c2.rgb+')';
-    }
-
     this.screenTodayVerses = function(data, planId, day){
         console.log('screenTodayVerses ' + planId + ',' + day);
         $('#reveal-button').removeClass('no-link').data('planId', planId).data('day', day);
@@ -568,7 +514,6 @@ function versesFetch(planId, day){
     $.get('http://' + HOST + '/verses', { plan_id: planId, day: day, user_id: userId, user_name: userName }, function(verses){
         var data = {}
         data[key] = verses;
-//        chrome.storage.sync.set(data);
         versesProcess(verses, planId, day);
         htmlRender.fetchMemorized();
     });
@@ -623,58 +568,6 @@ function addPlanLinkClicked(event){
     $('#passages-container, #new-plan-link').show();
     saveData();
 }
-
-function userNameSubmitClicked(){
-    var name = $('#user-name').val().trim();
-    if(name.length < 3) {
-        alert('Your name is too short');
-    }
-    else {
-        userName = name;
-        saveData();
-        $('#user-name-container').fadeOut('slow', function(){
-            versesNext();
-            $('#new-plan-link').show();
-        });
-    }
-}
-
-function feedbackCloseClicked(){
-    $('#feedback').hide();
-    var data = {}
-    data['feedback-closed'] = '1';
-//    chrome.storage.sync.set(data);
-}
-
-function helpClicked(){
-    htmlRender.showFeedback();
-}
-
-function rateBackgroundClicked(){
-    var avg = (getRandom(1,2)[0]+2) + '.' + getRandom(1,9)[0];
-    $('#rate-background a').hide();
-    $('#rate-background p').text('Thank you for rating!');
-    $.get('http://' + HOST + '/usage', { usage_type: 'RATE-BG', user_id: userId, user_name: userName, details: $(this).data('rate') + '-' + bgImage });
-}
-
-function ratedBgClicked(){
-    $.get('http://' + HOST + '/usage', { usage_type: 'VIEW-RATED-BG', user_id: userId, user_name: userName, details: $(this).data('rate')});
-}
-
-//function rateYesClicked(){
-//    var data = {}
-//    data['rated'] = 'yes';
-//    chrome.storage.sync.set(data);
-//    $.get('http://' + HOST + '/usage', { usage_type: 'RATE-YES', user_id: userId, user_name: userName });
-//}
-//
-//function rateNoClicked(){
-//    $('#rate-container').fadeOut();
-//    var data = {}
-//    data['rated'] = 'no';
-//    chrome.storage.sync.set(data);
-//    $.get('http://' + HOST + '/usage', { usage_type: 'RATE-NO', user_id: userId, user_name: userName });
-//}
 
 function revealClicked(){
     var usageType = '';

@@ -830,3 +830,12 @@ input.wrong {
     top: 2px;
     right: 4px;
 }
+
+#stats {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    text-align: center;
+    display: none;
+    opacity: 0.7;
+}

@@ -15,7 +15,7 @@ class PageController < ApplicationController
     },
     {
       "id"=> "3",
-      "days"=> ["Ephesians.5:33","Colossians.3:14","Proverbs.10:12","Proverbs.17:17","1John.3:16-18","1John.4:8","John.3:16","Psalm.18:1","Matthew.22:27-29","Deuteronomy.10:12-19","Song of Solomon.8:4-8","Matthew.6:24","Matthew.22:37-39","Matthew.23:6-8"]
+      "days"=> ["Ephesians.5:33","Colossians.3:14","Proverbs.10:12","Proverbs.17:17","1John.3:16-18","1John.4:8","John.3:16","Psalm.18:1","Matthew.22:27-29","Proverbs.10:12","Song of Solomon.8:4-8","Matthew.6:24","Matthew.22:37-39","Matthew.23:6-8"]
     },
     {
       "id"=> "4",
@@ -158,6 +158,15 @@ class PageController < ApplicationController
   def delete_users
     Usage.delete_all("user_name like 'kelvin'")
     render text: 'ok'
+  end
+
+  def usage_stats
+    viewed_count = Usage.where(usage_type: 'VIEWED-LIKE').count
+    played_count = Usage.where(usage_type:  ['ANSWERED_WRONG','ANSWERED_WRONG']).count
+    output = {}
+    output['viewed-count'] = viewed_count
+    output['played-count'] = played_count
+    render text: output.to_json
   end
 
   def bg_rating
