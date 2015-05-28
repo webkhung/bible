@@ -22,7 +22,7 @@
   - @overall_duration.each do |row|
     %tr
       - row.each do |cell|
-        %td= cell
+        %td= cell[1]
 
 %h2 Played count
 %table{ border: 1}
@@ -35,7 +35,7 @@
   - @played_count.each do |row|
     %tr
       - row.each do |cell|
-        %td= cell
+        %td= cell[1]
 
 %h2 Log
 %table{ border: 1}
