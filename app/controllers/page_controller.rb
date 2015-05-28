@@ -136,7 +136,7 @@ class PageController < ApplicationController
     end
     @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 2.weeks.ago).order(order_sql)
 
-    sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages group by user_name order by min(created_at) desc"
+    sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages group by user_name order by max(created_at), min(created_at) desc"
     @overall_duration = ActiveRecord::Base.connection.execute(sql)
 
     sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages where usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT' group by user_name order by min(created_at) desc"
