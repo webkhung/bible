@@ -1,17 +1,43 @@
-%p New users in the last 3 days
-- @new_users.each do |user|
-  = "#{user}, "
-
-%br
-
-- @usage_by_date.each do |usage_by_date|
-  %div= "#{usage_by_date[0]} #{usage_by_date[1]}"
-
 %p
   = link_to 'default', report_path()
   = link_to 'sort by users', report_path(sort: 'users')
   = link_to 'sort by time', report_path(sort: 'time')
 
+%p New users in the last 3 days
+- @new_users.each do |user|
+  = "#{user}, "
+
+%h2 User count
+- @usage_by_date.each do |usage_by_date|
+  %div= "#{usage_by_date[0]} #{usage_by_date[1]}"
+
+%h2 Overall duration
+%table{ border: 1}
+  %tr
+    %td user name
+    %td count
+    %td max
+    %td min
+    %td duration
+  - @overall_duration.each do |row|
+    %tr
+      - row.each do |cell|
+        %td= cell
+
+%h2 Played count
+%table{ border: 1}
+  %tr
+    %td user name
+    %td count
+    %td max
+    %td min
+    %td duration
+  - @played_count.each do |row|
+    %tr
+      - row.each do |cell|
+        %td= cell
+
+%h2 Log
 %table{ border: 1}
   %tr
     %td user id
