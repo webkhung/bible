@@ -1,3 +1,9 @@
+%p New users in the last 2 days
+- @new_users.each do |user|
+  = "#{user}, "
+
+%br
+
 - @usage_by_date.each do |usage_by_date|
   %div= "#{usage_by_date[0]} #{usage_by_date[1]}"
 

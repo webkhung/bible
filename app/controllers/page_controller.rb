@@ -123,14 +123,18 @@ class PageController < ApplicationController
   end
 
   def report
-    @usage_by_date = Usage.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas'").group('date(created_at)').order('date(created_at) desc').count('distinct(user_name)')
+    all = Usage.select(:user_name).distinct.pluck(:user_name).compact
+    old = Usage.select(:user_name).where('created_at < ?', 2.days.ago).distinct.pluck(:user_name).compact
+    @new_users = all - old
+
+    @usage_by_date = Usage.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at < ?", 2.weeks.ago).group('date(created_at)').order('date(created_at) desc').count('distinct(user_name)')
 
     order_sql = case params['sort']
     when 'users' then 'user_name, created_at desc'
     when 'time' then 'created_at desc'
     else 'DATE(created_at) desc, user_name, created_at desc'
     end
-    @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas'").order(order_sql)
+    @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at < ?", 2.weeks.ago).order(order_sql)
   end
 
   def users_count
