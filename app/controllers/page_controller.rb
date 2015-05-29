@@ -15,7 +15,7 @@ class PageController < ApplicationController
     },
     {
       "id"=> "3",
-      "days"=> ["Ephesians.5:33","Colossians.3:14","Proverbs.10:12","Proverbs.17:17","1John.3:16-18","1John.4:8","John.3:16","Psalm.18:1","Matthew.22:27-29","Proverbs.10:12","Song of Solomon.8:4-8","Matthew.6:24","Matthew.22:37-39","Matthew.23:6-8"]
+      "days"=> ["Ephesians.5:33","Colossians.3:14","Proverbs.10:12","Proverbs.17:17","1John.3:16-18","1John.4:8","John.3:16","Psalm.18:1","Matthew.22:27-29","Proverbs.10:12","SongofSolomon.8:4-8","Matthew.6:24","Matthew.22:37-39","Matthew.23:6-8"]
     },
     {
       "id"=> "4",
