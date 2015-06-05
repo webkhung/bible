@@ -139,7 +139,7 @@ class PageController < ApplicationController
     sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages group by user_name order by max(created_at) desc, min(created_at) desc"
     @overall_duration = ActiveRecord::Base.connection.execute(sql)
 
-    sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages where usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT' group by user_name order by min(created_at) desc"
+    sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages where usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT' group by user_name order by max(created_at) desc, min(created_at) desc"
     @played_count = ActiveRecord::Base.connection.execute(sql)
   end
 
@@ -170,13 +170,24 @@ class PageController < ApplicationController
     render text: 'ok'
   end
 
-  def usage_stats
-    viewed_count = Usage.where(usage_type: 'VIEWED-LIKE').count
-    played_count = Usage.where(usage_type:  ['ANSWERED_WRONG','ANSWERED_WRONG']).count
+  def memorized_stats
+    #Usage.where('created_at > ?', DateTime.now.in_time_zone("Pacific Time (US & Canada)").beginning_of_day).length
+    # "date(convert_tz(created_at,'UTC','Pacific Time (US & Canada)'))"
     output = {}
-    output['viewed-count'] = viewed_count
-    output['played-count'] = played_count
-    render text: output.to_json
+
+    time_sql = "(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date"
+    time_ago_sql = "created_at > NOW() - INTERVAL '4 days'"
+    sql = "select #{time_sql}, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and #{time_ago_sql} group by user_id, user_name, #{time_sql} order by timezone desc, count(*) desc;"
+    stats = ActiveRecord::Base.connection.execute(sql)
+    stats.each do |row|
+      output[row[0]] = {row[1] => row[2]}
+    end
+
+    #select user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and created_at > NOW() - INTERVAL '8 days' group by user_id, user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date order by timezone desc, count(*) desc;
+  end
+
+  def test_env
+    render text: Rails.env
   end
 
   def bg_rating
@@ -217,5 +228,19 @@ class PageController < ApplicationController
       usage_type: usage_type
     )
   end
+
+  #def memorize_users
+  #  user_count = Usage.where("usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT' and created_at > ?", 2.days.ago).group('user_name').order('count(*) desc').count
+  #  render text: user_count.to_json
+  #end
+
+  #def usage_stats
+  #  viewed_count = Usage.where(usage_type: 'VIEWED-LIKE').count
+  #  played_count = Usage.where(usage_type:  ['ANSWERED_WRONG','ANSWERED_WRONG']).count
+  #  output = {}
+  #  output['viewed-count'] = viewed_count
+  #  output['played-count'] = played_count
+  #  render text: output.to_json
+  #end
 
 end
