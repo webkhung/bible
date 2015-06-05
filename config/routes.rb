@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'users_count' => 'page#users_count'
   get 'delete_users' => 'page#delete_users'
   get 'memorized_verses' => 'page#memorized_verses'
-  get 'test_env' => 'page#test_env'
   get 'memorized_stats' => 'page#memorized_stats'
 
   # The priority is based upon order of creation: first created -> highest priority.
