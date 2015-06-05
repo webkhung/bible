@@ -177,20 +177,23 @@ class PageController < ApplicationController
 
     if Rails.env == 'production'
       time_sql = "(created_at AT TIME ZONE 'US/Pacific')::date"
-      time_ago_sql = "created_at > NOW() - INTERVAL '4 days'"
+      time_ago_sql = "created_at > NOW() - INTERVAL '13 days'"
       sql = "select #{time_sql}, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and #{time_ago_sql} group by user_id, user_name, #{time_sql} order by timezone desc, count(*) desc;"
     else
       time_sql = "DATE(created_at)"
       sql = "select #{time_sql}, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') group by user_id, user_name, #{time_sql} order by #{time_sql} desc, count(*) desc;"
     end
 
+    puts sql
+
     output['today'] = DateTime.now.in_time_zone("Pacific Time (US & Canada)").to_date.strftime('%F')
     stats = ActiveRecord::Base.connection.execute(sql)
     stats.each do |row|
-      output[row[0]] = {row[1] => row[2]}
+      output[row['timezone']] = {row['user_name'] => row['count']}
     end
 
     render text: output.to_json
+    #select (created_at AT TIME ZONE 'US/Pacific')::date, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and created_at > NOW() - INTERVAL '13 days' group by user_id, user_name, (created_at AT TIME ZONE 'US/Pacific')::date order by timezone desc, count(*) desc;
     #select user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and created_at > NOW() - INTERVAL '8 days' group by user_id, user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date order by timezone desc, count(*) desc;
   end
 
