@@ -184,7 +184,7 @@ class PageController < ApplicationController
       sql = "select #{time_sql}, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') group by user_id, user_name, #{time_sql} order by #{time_sql} desc, count(*) desc;"
     end
 
-    stats['today'] = DateTime.now.in_time_zone("Pacific Time (US & Canada)").to_date.strftime('%F')
+    output['today'] = DateTime.now.in_time_zone("Pacific Time (US & Canada)").to_date.strftime('%F')
     stats = ActiveRecord::Base.connection.execute(sql)
     stats.each do |row|
       output[row[0]] = {row[1] => row[2]}
