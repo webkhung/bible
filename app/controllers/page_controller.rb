@@ -187,8 +187,10 @@ class PageController < ApplicationController
     output['today'] = DateTime.now.in_time_zone("Pacific Time (US & Canada)").to_date.strftime('%F')
     stats = ActiveRecord::Base.connection.execute(sql)
     stats.each do |row|
-      output[row['timezone']] = [] if output[row['timezone']].nil?
-      output[row['timezone']] << {row['user_name'] => row['count']}
+      output['stats'] = [] if output['stats'].nil?
+      output['stats'] << { 'date' => row['timezone'], 'user_name' => row['user_name'], 'count' => row['count'] }
+      #output[row['timezone']] = [] if output[row['timezone']].nil?
+      #output[row['timezone']] << {row['user_name'] => row['count']}
     end
 
     render text: output.to_json
