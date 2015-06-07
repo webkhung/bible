@@ -181,7 +181,7 @@ class PageController < ApplicationController
 
 
     if Rails.env == 'production'
-      time_sql = "(created_at AT TIME ZONE 'US/Pacific')::date"
+      time_sql = "(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date"
       time_ago_sql = "created_at > NOW() - INTERVAL '13 days'"
     else
       time_sql = "DATE(created_at)"
