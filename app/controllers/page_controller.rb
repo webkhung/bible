@@ -173,29 +173,46 @@ class PageController < ApplicationController
   def memorized_stats
     #Usage.where('created_at > ?', DateTime.now.in_time_zone("Pacific Time (US & Canada)").beginning_of_day).length
     # "date(convert_tz(created_at,'UTC','Pacific Time (US & Canada)'))"
+    #select (created_at AT TIME ZONE 'US/Pacific')::date, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and created_at > NOW() - INTERVAL '13 days' group by user_id, user_name, (created_at AT TIME ZONE 'US/Pacific')::date order by timezone desc, count(*) desc;
+    #select user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and created_at > NOW() - INTERVAL '8 days' group by user_id, user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date order by timezone desc, count(*) desc;
+
     output = {}
+    output['today'] = DateTime.now.in_time_zone("Pacific Time (US & Canada)").to_date.strftime('%F')
+
 
     if Rails.env == 'production'
       time_sql = "(created_at AT TIME ZONE 'US/Pacific')::date"
       time_ago_sql = "created_at > NOW() - INTERVAL '13 days'"
-      sql = "select #{time_sql}, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and #{time_ago_sql} group by user_id, user_name, #{time_sql} order by timezone desc, count(*) desc;"
     else
       time_sql = "DATE(created_at)"
+    end
+
+
+    if Rails.env == 'production'
+      sql = "select #{time_sql}, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and #{time_ago_sql} group by user_id, user_name, #{time_sql} order by timezone desc, count(*) desc;"
+    else
       sql = "select #{time_sql}, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') group by user_id, user_name, #{time_sql} order by #{time_sql} desc, count(*) desc;"
     end
 
-    output['today'] = DateTime.now.in_time_zone("Pacific Time (US & Canada)").to_date.strftime('%F')
     stats = ActiveRecord::Base.connection.execute(sql)
     stats.each do |row|
-      output['stats'] = [] if output['stats'].nil?
-      output['stats'] << { 'date' => row['timezone'], 'user_name' => row['user_name'], 'count' => row['count'] }
-      #output[row['timezone']] = [] if output[row['timezone']].nil?
-      #output[row['timezone']] << {row['user_name'] => row['count']}
+      output['stats-active'] = [] if output['stats-active'].nil?
+      output['stats-active'] << { 'date' => row['timezone'], 'user_name' => row['user_name'], 'count' => row['count'] }
+    end
+
+    if Rails.env == 'production'
+      sql = "select #{time_sql}, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' and #{time_ago_sql} group by user_id, user_name, #{time_sql} order by timezone desc, count(*) desc;"
+    else
+      sql = "select #{time_sql}, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' group by user_id, user_name, #{time_sql} order by #{time_sql} desc, count(*) desc;"
+    end
+
+    stats = ActiveRecord::Base.connection.execute(sql)
+    stats.each do |row|
+      output['stats-correct'] = [] if output['stats-correct'].nil?
+      output['stats-correct'] << { 'date' => row['timezone'], 'user_name' => row['user_name'], 'count' => row['count'] }
     end
 
     render text: output.to_json
-    #select (created_at AT TIME ZONE 'US/Pacific')::date, user_name, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and created_at > NOW() - INTERVAL '13 days' group by user_id, user_name, (created_at AT TIME ZONE 'US/Pacific')::date order by timezone desc, count(*) desc;
-    #select user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date, count(*) from usages where (usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT') and created_at > NOW() - INTERVAL '8 days' group by user_id, user_name, (created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date order by timezone desc, count(*) desc;
   end
 
   def bg_rating
