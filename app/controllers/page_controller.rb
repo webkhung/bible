@@ -165,6 +165,17 @@ class PageController < ApplicationController
     render text: memorized.to_json
   end
 
+  def memorized_verses_with_count
+    #Usage.where("usage_type like 'ANSWERED_CORRECT' and user_id like ?", "gVrc4bCuf969OS7FTqyi").select('count(*) as count, plan_id, day').group('plan_id, day').order('plan_id').all.first.count
+    memorized = []
+    Usage.where("usage_type like 'ANSWERED_CORRECT' and user_id like ?", params['user_id']).select('count(*) as count, plan_id, day').group('plan_id, day').order('plan_id').each do |plan|
+      puts "#{plan.count} - #{plan.plan_id} - #{plan.day}"
+      passage = READING_PLAN.select{ |p| p['id'] == plan.plan_id.to_s }.first["days"][plan.day.to_i - 1]
+      memorized << [plan.plan_id, plan.day, passage, plan.count]
+    end
+    puts memorized.to_json
+  end
+
   def delete_users
     Usage.delete_all("user_name like 'kelvin' or user_name like 'Kelvin'")
     render text: 'ok'
