@@ -254,15 +254,17 @@ class PageController < ApplicationController
     end
 
     output_sorted = {}
+    output_sorted['weeks'] = []
     output.each do |key, value|
       if key == current_week_of
         output_sorted[key] =  value.sort_by { |name, age| age }.reverse!
       else
         output_sorted[key] = value.sort_by { |name, age| age }.reverse.take(1).flatten
       end
+      output_sorted['weeks'] << key
     end
     output_sorted['current_week_of'] = current_week_of
-
+    
     render text: output_sorted.to_json
   end
 
