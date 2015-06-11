@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'memorized_verses' => 'page#memorized_verses'
   get 'memorized_stats' => 'page#memorized_stats'
   get 'memorized_verses_with_count' => 'page#memorized_verses_with_count'
+  get 'memorized_stats_weekly' => 'page#memorized_stats_weekly'
 
 
 

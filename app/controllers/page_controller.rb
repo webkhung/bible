@@ -226,6 +226,46 @@ class PageController < ApplicationController
     render text: output.to_json
   end
 
+  def memorized_stats_weekly
+    output = {}
+    current_week_of = DateTime.now.in_time_zone("Pacific Time (US & Canada)").to_date.beginning_of_week(start_day = :saturday).strftime('%F')
+
+    if Rails.env == 'production'
+      time_sql = "(created_at AT TIME ZONE 'UTC' AT TIME ZONE 'US/Pacific')::date"
+    else
+      time_sql = "DATE(created_at)"
+    end
+
+    if Rails.env == 'production'
+      sql = "select #{time_sql}, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by timezone desc, count(*) desc;"
+    else
+      sql = "select #{time_sql}, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by #{time_sql} desc, count(*) desc;"
+    end
+
+    stats = ActiveRecord::Base.connection.execute(sql)
+    stats.each do |row|
+      week_of = Date.strptime(row['timezone'], '%Y-%m-%d').beginning_of_week(start_day = :saturday).strftime('%F')
+      output[week_of] = {} if output[week_of].nil?
+      count = 0
+      if output[week_of][row['user_name']]
+        count = output[week_of][row['user_name']]
+      end
+      output[week_of][row['user_name']] = count + row['count'].to_i
+    end
+
+    output_sorted = {}
+    output.each do |key, value|
+      if key == current_week_of
+        output_sorted[key] =  value.sort_by { |name, age| age }.reverse!
+      else
+        output_sorted[key] = value.sort_by { |name, age| age }.reverse.take(1).flatten
+      end
+    end
+    output_sorted['current_week_of'] = current_week_of
+
+    render text: output_sorted.to_json
+  end
+
   def bg_rating
     @rating = Usage.where("usage_type like 'RATE-BG' and created_at > '2015-06-11 04:55:04'").select('details').group('details').order('count(*) desc').count
 
