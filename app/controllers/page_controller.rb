@@ -49,6 +49,14 @@ class PageController < ApplicationController
       "id"=>"11",
       "days"=> ["Matthew.6:21","Malachi.3:10","Ecclesiastes.5:10","Romans.13:8","Psalm 37:16-17","Proverbs 13:11","Hebrews 13:5","Matthew 19:21","Proverbs 17:16","Matthew 6:24","Luke 3:14","Exodus 22:25","1 Timothy 6:10","Deuteronomy 23:19","Matthew 21:12-13","1 Timothy 6:17-19","Luke 12:33","Deuteronomy 15:7","Matthew 6:1-4","Mark 12:41-44","Proverbs 10:4","Revelation 3:17","Luke 16:13","Matthew 13:22","2 Chronicles 1:11-12","1 Peter 5:2-3","1 Samuel 2:7","Proverbs 3:9"]
     },
+    {
+      "id"=>"12",
+      "days"=> ["1Timothy.6:17","Matthew.6:8","Psalm.56:6","Psalm.23:4","Exodus.34:21"]
+    },
+    {
+      "id"=>"13",
+      "days"=> ["Galatians.6:9","3John.1:8","Ecclesiastes.11:1-2","1Timothy.6:18","Proverbs.21:5","Deuteronomy.8:18","Matthew.6:24"]
+    },
     #{
     #  "id" => "anger",
     #  "days" => ["Romans.12:17-18,21,Ephesians.4:26,Proverbs.15:1,Prov.19:11"]
@@ -238,19 +246,30 @@ class PageController < ApplicationController
 
     if Rails.env == 'production'
       sql = "select #{time_sql}, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by timezone desc, count(*) desc;"
-    else
-      sql = "select #{time_sql}, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by #{time_sql} desc, count(*) desc;"
-    end
 
-    stats = ActiveRecord::Base.connection.execute(sql)
-    stats.each do |row|
-      week_of = Date.strptime(row['timezone'], '%Y-%m-%d').beginning_of_week(start_day = :saturday).strftime('%F')
-      output[week_of] = {} if output[week_of].nil?
-      count = 0
-      if output[week_of][row['user_name']]
-        count = output[week_of][row['user_name']]
+      stats = ActiveRecord::Base.connection.execute(sql)
+      stats.each do |row|
+        week_of = Date.strptime(row['timezone'], '%Y-%m-%d').beginning_of_week(start_day = :saturday).strftime('%F')
+        output[week_of] = {} if output[week_of].nil?
+        count = 0
+        if output[week_of][row['user_name']]
+          count = output[week_of][row['user_name']]
+        end
+        output[week_of][row['user_name']] = count + row['count'].to_i
       end
-      output[week_of][row['user_name']] = count + row['count'].to_i
+    else
+      sql = "select #{time_sql} as timezone, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by #{time_sql} desc, count(*) desc;"
+
+      stats = ActiveRecord::Base.connection.execute(sql)
+      stats.each do |row|
+        week_of = row[0].beginning_of_week(start_day = :saturday).strftime('%F')
+        output[week_of] = {} if output[week_of].nil?
+        count = 0
+        if output[week_of][row[1]]
+          count = output[week_of][row[1]]
+        end
+        output[week_of][row[1]] = count + row[2].to_i
+      end
     end
 
     output_sorted = {}
