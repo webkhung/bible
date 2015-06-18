@@ -661,8 +661,8 @@ $( document ).ready(function() {
         objPlans[objPlan.id] = objPlan;
     });
 
-    userId = 'testuser';
-    userName = 'testuser';
+    userId = 'homepage';
+    userName = 'homepage';
     objPlans['1'].added = true;
 
     versesNext();
