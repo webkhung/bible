@@ -661,7 +661,13 @@ $( document ).ready(function() {
         objPlans[objPlan.id] = objPlan;
     });
 
-    userId = 'homepage';
+    if($.cookie("homepage") !== undefined) {
+        userId = $.cookie("homepage");
+    }
+    else {
+        userId = generateUserId();
+        $.cookie("homepage", userId);
+    }
     userName = 'homepage';
     objPlans['1'].added = true;
 
@@ -693,6 +699,9 @@ $( document ).ready(function() {
         separator: ",", // If you don't want commas to be the separator, you can define a new separator (|, &, * etc.) by yourself using this field.
         speed: 3000 // How many milliseconds until the next word show.
     });
+
+    $('#chrome-app-store').click(function(){ trackClicked('chrome-app-store-clicked') });
+    $('#about').click(function(){ trackClicked('about-clicked') });
 });
 
 if (chrome.app.isInstalled) {

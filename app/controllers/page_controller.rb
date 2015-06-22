@@ -31,11 +31,11 @@ class PageController < ApplicationController
     },
     {
       "id"=>"7",
-      "days"=> ["Proverbs.18:10","Proverbs.3:5-6","Isaiah.41:10","John.14:27","John.16:33","Psalm.46:1-3","2Timothy.1:7","Psalm.16:8","Psalm.55:22","1Peter.5:7","Isaiah 26:3","Psalm 118:14-16","Psalm 119:114-115","Psalm 119:25","Psalm 119:50","Psalm 119:71","Psalm 120:1"]
+      "days"=> ["Proverbs.18:10","Proverbs.3:5-6","Isaiah.41:10","John.14:27","John.16:33","Psalm.46:1-3","2Timothy.1:7","Psalm.16:8","Psalm.55:22","1Peter.5:7","Isaiah.26:3","Psalm.118:14-16","Psalm.119:114-115","Psalm.119:25","Psalm.119:50","Psalm.119:71","Psalm.120:1"]
     },
     {
       "id"=>"8",
-      "days"=> ["James.1:19-20","Proverbs.29:11","James.1:20","Proverbs.19:11","Ecclesiastes.7:9","Proverbs.15:1","Proverbs.15:18","Colossians.3:8","James.4:1-2","Proverbs.16:32","Proverbs.22:24","Matthew.5:22","Psalm.37:8-9","Psalm.7:11","2 Kings.11:9-10","2 Kings.17:18","Proverbs.14:29"]
+      "days"=> ["James.1:19-20","Proverbs.29:11","James.1:20","Proverbs.19:11","Ecclesiastes.7:9","Proverbs.15:1","Proverbs.15:18","Colossians.3:8","James.4:1-2","Proverbs.16:32","Proverbs.22:24","Matthew.5:22","Psalm.37:8-9","Psalm.7:11","2Kings.11:9-10","2Kings.17:18","Proverbs.14:29"]
     },
     {
       "id"=>"9",
@@ -47,7 +47,7 @@ class PageController < ApplicationController
     },
     {
       "id"=>"11",
-      "days"=> ["Matthew.6:21","Malachi.3:10","Ecclesiastes.5:10","Romans.13:8","Psalm 37:16-17","Proverbs 13:11","Hebrews 13:5","Matthew 19:21","Proverbs 17:16","Matthew 6:24","Luke 3:14","Exodus 22:25","1 Timothy 6:10","Deuteronomy 23:19","Matthew 21:12-13","1 Timothy 6:17-19","Luke 12:33","Deuteronomy 15:7","Matthew 6:1-4","Mark 12:41-44","Proverbs 10:4","Revelation 3:17","Luke 16:13","Matthew 13:22","2 Chronicles 1:11-12","1 Peter 5:2-3","1 Samuel 2:7","Proverbs 3:9"]
+      "days"=> ["Matthew.6:21","Malachi.3:10","Ecclesiastes.5:10","Romans.13:8","Psalm.37:16-17","Proverbs.13:11","Hebrews.13:5","Matthew.19:21","Proverbs.17:16","Matthew.6:24","Luke.3:14","Exodus.22:25","1Timothy 6:10","Deuteronomy.23:19","Matthew.21:12-13","1Timothy 6:17-19","Luke.12:33","Deuteronomy.15:7","Matthew 6:1-4","Mark.12:41-44","Proverbs.10:4","Revelation.3:17","Luke.16:13","Matthew.13:22","2Chronicles.1:11-12","1Peter.5:2-3","1Samuel.2:7","Proverbs.3:9"]
     },
     {
       "id"=>"12",
