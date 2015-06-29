@@ -288,7 +288,7 @@ class PageController < ApplicationController
   end
 
   def bg_rating
-    @rating = Usage.where("usage_type like 'RATE-BG' and created_at > '2015-06-11 04:55:04'").select('details').group('details').order('count(*) desc').count
+    @rating = Usage.where("usage_type like 'RATE-BG' and created_at > '2015-07-01 02:09:45'").select('details').group('details').order('count(*) desc').count
 
     output = {}
     output['low'] = []
