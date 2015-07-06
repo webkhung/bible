@@ -57,6 +57,10 @@ class PageController < ApplicationController
       "id"=>"13",
       "days"=> ["Galatians.6:9","3John.1:8","Ecclesiastes.11:1-2","1Timothy.6:18","Proverbs.21:5","Deuteronomy.8:18","Matthew.6:24"]
     },
+    {
+        "id"=>"100",
+        "days"=> ["John.1:1-28", "John.5.31-John.6.14"]
+    },
     #{
     #  "id" => "anger",
     #  "days" => ["Romans.12:17-18,21,Ephesians.4:26,Proverbs.15:1,Prov.19:11"]

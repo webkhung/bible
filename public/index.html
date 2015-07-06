@@ -19,18 +19,19 @@
     <div class="bg"></div>
     <div class="bg hidden"></div>
     <div class='maincontainer'>
-        <a id='new-plan-link' href='#'>
-            <img src='images/add.png' style='vertical-align:middle'>
-            <div style='font-size: 16px'> Add Plan</div>
+        <a id='new-plan-link' href='#' class='hide-in-memorize hide-in-select-plans' >
+            <img src='images/add.png' style='width:50px;height:50px;vertical-align:middle'>
+            <div style='font-size: 12px'> Add Plan</div>
         </a>
 
         <a id='chrome-app-store' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji'>
             <span class="small">Available on the</span><br>Chrome Web Store
         </a>
 
-        <div id='plans-selector' class='popup'></div>
+        <div id='plans-selector' class='popup hide-in-memorize'></div>
 
-        <div id='passages-container'>
+        <div id='passages-container' class='hide-in-select-plans'>
+            <div id='passage-header'></div>
             <div id='passages'></div>
             <div id='message'></div>
             <div style='text-align:center;'>
@@ -47,7 +48,7 @@
         </div>
 
         <div id='bottom'>
-            <div style='text-align: center;padding-bottom:70px'>
+            <div style='text-align: center;padding-bottom:70px'  class='hide-in-select-plans'>
                 <p id='rotate-text'>Daily <span class="rotate">Bible Verse, Blessing, Memorization, Devotion, Photography</span> on your new tab page.</p>
                 <a id="install-button" class='white-button'><img src="images/plus-24.png"> Add Bible Verse to Chrome</a>
                 <p id="not-chrome" class='white-text'>

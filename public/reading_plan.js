@@ -90,6 +90,20 @@ var readingPlans = [
         "badge": "",
         "description": "",
         "days": ["Matthew.6:21","Malachi.3:10","Ecclesiastes.5:10","Romans.13:8","Psalm.37:16-17","Proverbs.13:11","Hebrews.13:5","Matthew.19:21","Proverbs.17:16","Matthew.6:24","Luke.3:14","Exodus.22:25","1Timothy.6:10","Deuteronomy.23:19","Matthew.21:12-13","1Timothy.6:17-19","Luke.12:33","Deuteronomy.15:7","Matthew.6:1-4","Mark.12:41-44","Proverbs.10:4","Revelation.3:17","Luke.16:13","Matthew.13:22","2Chronicles.1:11-12","1Peter.5:2-3","1Samuel.2:7","Proverbs.3:9"]
+    },
+    {
+        "id": "12",
+        "name": "Stress",
+        "badge": "",
+        "description": "",
+        "days": ["1Timothy.6:17","Matthew.6:8","Psalm.56:6","Psalm.23:4","Exodus.34:21"]
+    },
+    {
+        "id": "13",
+        "name": "Finances",
+        "badge": "",
+        "description": "",
+        "days": ["Galatians.6:9","3John.1:8","Ecclesiastes.11:1-2","1Timothy.6:18","Proverbs.21:5","Deuteronomy.8:18","Matthew.6:24"]
     }
 ]
 
@@ -363,7 +377,7 @@ function HTMLRender(){
                     goal : plan.days.length.toString(),
                     raised : plan.completedOn.length.toString(),
                     width : '150px',
-                    height : '26px',
+                    height : '22px',
                     bgColor : '#dadada',
                     barColor : '#f09246',
                     displayTotal: false
@@ -375,7 +389,10 @@ function HTMLRender(){
             }
         }
 
-        $('#added-plan-' + selectedPlanId + ' .circle').addClass('blink_me');
+        if(selectedPlanId !== undefined){
+            $('#added-plan-' + selectedPlanId + ' .circle').addClass('blink_me');
+            $('#passage-header').text(objPlans[selectedPlanId].name);
+        }
     }
 
     this.screenUserName = function() {
@@ -395,7 +412,8 @@ function HTMLRender(){
             var plan = objPlans[planId];
             $container = $("<div class='plan-container'>")
             $rightCol = $("<div class='plan-right'>");
-            $rightCol.append("<span class='popup-text'>" + plan.numOfDays + ' Days on ' + plan.name + "</span>");
+            $rightCol.append("<div class='plan-name'>" + plan.name + "</div>");
+//            $rightCol.append("<div class='plan-subtext'>" + plan.numOfDays + ' Days ' + "</div>");
             $meta = $("<span class='plan-meta'>");
             if(plan.added){
                 numPlansAdded++;
@@ -415,26 +433,34 @@ function HTMLRender(){
             $container.append($rightCol);
             $planSelector.append($container);
         }
-        var addPlansText = '<h1><span class=username>' + userName + ',</span> Make God\'s Word Part Of Your Day!</h1><h2>Select a Plan Below</h2>';
+        var addPlansText = '<h1>You Can Select Other Topical Reading Plans</h1><h2></h2>';
         $planSelector.find('#plansSelectorHeader').html(addPlansText);
-        $planSelector.append("<div style='text-align: center'><a id='plans-close' class='myButton' href='#'>Close</a></div>");
+        $planSelector.append("<div style='text-align: center; clear: both'><a id='plans-close' class='myButton' href='#'>Close</a></div>");
         $planSelector.show();
     }
 
     this.newGradient = function() {
-        var c1 = {
-            r: Math.floor(Math.random()*0) + 100,
-            g: Math.floor(Math.random()*155) + 100,
-            b: Math.floor(Math.random()*155) + 100
-        };
-        var c2 = {
-            r: Math.floor(Math.random()*0) + 150,
-            g: Math.floor(Math.random()*255) + 0,
-            b: Math.floor(Math.random()*255) + 0
-        };
-        c1.rgb = 'rgb('+c1.r+','+c1.g+','+c1.b+')';
-        c2.rgb = 'rgb('+c2.r+','+c2.g+','+c2.b+')';
-        return 'radial-gradient(at top left, '+c1.rgb+', '+c2.rgb+')';
+        var inside = ['ff0000', '70e1f5', '185a9d', 'BB377D'];
+        var outside = ['4776E6', 'C9FFBF', '43cea2', 'FBD3E9'];
+
+        var rand = getRandom(1, inside.length);
+
+        // rand[0] = 4;
+
+        var c1 = inside[rand[0]-1];
+        var c2 = outside[rand[0]-1];
+
+        var R = hexToR("#" + c1);
+        var G = hexToG("#" + c1);
+        var B = hexToB("#" + c1);
+        var _c1 = 'rgba('+R+','+G+','+B+',0.2)';
+
+        R = hexToR("#" + c2);
+        G = hexToG("#" + c2);
+        B = hexToB("#" + c2);
+        var _c2 = 'rgba('+R+','+G+','+B+',1)';
+
+        return 'radial-gradient('+_c1+', '+_c2+')';
     }
 
     this.screenTodayVerses = function(data, planId, day){
@@ -462,6 +488,7 @@ function HTMLRender(){
             $('#reveal-button').css('visibility','visible').text('Done').data('start-memorize', false);
             $('#hint-button').show().removeClass('no-link').data('planId', planId).data('day', day);
             $('#ticks').show();
+            $('.hide-in-memorize').fadeOut();
             $('#message').html('Fill in the blank spaces');
             showTicks(memorizedCount);
         }
@@ -523,7 +550,8 @@ function versesFetch(planId, day){
 }
 
 function bgBlock(){
-    $('.bg').removeClass('bgClear').addClass('bgBlock').toggleClass('hidden');
+    $('.bg.hidden').css('background', '').css('background-color', 'rgb(47,154,231)');
+    $('.bg').removeClass('bgClear').addClass('bgBlock');
 }
 
 function bgClear(){
@@ -531,7 +559,7 @@ function bgClear(){
 }
 
 function rollBg() {
-    bgImage = "bg" + (Math.floor(Math.random() * 44) + 1) + ".jpg";
+    bgImage = "bg" + (Math.floor(Math.random() * 7) + 1) + ".jpg";
     $('body').css('background-image', "url('images/" + bgImage + "')");
     $('.bg.hidden').css('background', htmlRender.newGradient());
     $('.bg').toggleClass('hidden');
@@ -565,7 +593,7 @@ function addPlanLinkClicked(event){
     htmlRender.showAddedPlans();
     versesNext();
     $('#plans-selector').hide();
-    $('#passages-container, #new-plan-link').show();
+    $('.hide-in-select-plans').show();
     saveData();
 }
 
@@ -675,11 +703,11 @@ $( document ).ready(function() {
     $('#reveal-button, #hint-button').click(revealClicked);
     $('.maincontainer').on('click', '#new-plan-link', function(){
         htmlRender.screenPlanSelector();
-        $('#passages-container').hide();
+        $('.hide-in-select-plans').hide();
     });
     $('#plans-selector').on('click', '#plans-close', function(){
         $('.popup').hide();
-        $('#passages-container, #new-plan-link').show();
+        $('.hide-in-select-plans').show();
     });
     $('#memorized-link').click(memorizedClicked);
     $('#memorized-close').click(memorizedCloseClicked);
@@ -731,3 +759,8 @@ function checkChrome(){
         $('#not-chrome').show();
     }
 }
+
+function hexToR(h) {return parseInt((cutHex(h)).substring(0,2),16)}
+function hexToG(h) {return parseInt((cutHex(h)).substring(2,4),16)}
+function hexToB(h) {return parseInt((cutHex(h)).substring(4,6),16)}
+function cutHex(h) {return (h.charAt(0)=="#") ? h.substring(1,7):h}
