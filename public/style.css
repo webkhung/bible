@@ -705,7 +705,8 @@ input.wrong {
 }
 
 #passages-container #passage-header {
-    font-size: 60px;
+    font-size: 40px;
+    font-weight: bold;
     text-align: center;
     opacity: 0.7;
     color: white;
