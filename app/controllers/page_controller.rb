@@ -58,60 +58,53 @@ class PageController < ApplicationController
       "days"=> ["Galatians.6:9","3John.1:8","Ecclesiastes.11:1-2","1Timothy.6:18","Proverbs.21:5","Deuteronomy.8:18","Matthew.6:24"]
     },
     {
-        "id"=>"100",
-        "days"=> ["John.1:1-28", "John.1:29-51", "John.2:1-25" , "John.3:1-21", "John.3:22-36" , "John.4:1-26" , "John.4:27-54", "John.5:1-30", "John.5:31-6:14", "John.6:15-50" , "John.6:60-7:9", "John.7:10-44", "John.7:45-8:20", "John.8:21-47", "John.8:48-9:12", "John.9:13-41", "John.10:1-21", "John.10:22-11:16", "John.11:17-44", "John.11:45-12:19", "John.12:20-50", "John.13:1-30", "John.13:31-14:18", "John.14:19-15:17", "John.15:18-16:24", "John.16:25-17:19", "John.17:20-18:11", "John.18:12-40", "John.19:1-30", "John.19:31-20:18", "John.20:19-21:25"]
+      "id"=>"100",
+      "days"=> ["Genesis.1-2", "Genesis.3-5", "Genesis.6-8", "Genesis.9-11", "Genesis.12-14", "Genesis.15-17", "Genesis.18-19", "Genesis.20-22", "Genesis.23-24", "Genesis.25-26", "Genesis.27-28", "Genesis.29-30", "Genesis.31-32", "Genesis.33-35", "Genesis.36-37", "Genesis.38-40", "Genesis.41", "Genesis.42-43", "Genesis.44-45", "Genesis.46-48", "Genesis.49-50"]
     },
-    #{
-    #  "id" => "anger",
-    #  "days" => ["Romans.12:17-18,21,Ephesians.4:26,Proverbs.15:1,Prov.19:11"]
-    #},
-    #{
-    #  "id" => "anxiety",
-    #  "days" => ["Matthew.6:25,31,33"]
-    #},
-    #{
-    #  "id" => "depression",
-    #  "days" => ["Psalm.3:3-5,Psalm.30:5,Psalm.40:1-2,Psalm.42:11,Psalm.147:3"]
-    #},
-    #{
-    #  "id" => "fear",
-    #  "days" => ["2Timothy.1:7,Psalm.31:24,Psalm.91:10,Psalm.121:1-2"]
-    #},
-    #{
-    #  "id" => "temptation",
-    #  "days" => ["Matthew.26:41,1Corinthians.10:13,James.4:7,2Peter.2:9,Psalm.119:11"]
-    #},
-    #{
-    #  "id" => "stress",
-    #  "days" => ["Matthew.11:28,Philippians.4:11-13,Psalm.9:9,Psalm.27:5,Psalm.34:4"]
-    #},
-    #{
-    #  "id" => "lonely",
-    #  "days" => ["Psalm.27:10,Psalm.143:8,Hebrews.13:5,1Peter.5:7"]
-    #},
-    #{
-    #  "id" => "worried",
-    #  "days" => ["Matthew.6:19-34,1Peter.5:6-7"]
-    #}
+    {
+      "id"=>"101",
+      "days"=> ["John.1:1-28", "John.1:29-51", "John.2:1-25" , "John.3:1-21", "John.3:22-36" , "John.4:1-26" , "John.4:27-54", "John.5:1-30", "John.5:31-6:14", "John.6:15-50" , "John.6:60-7:9", "John.7:10-44", "John.7:45-8:20", "John.8:21-47", "John.8:48-9:12", "John.9:13-41", "John.10:1-21", "John.10:22-11:16", "John.11:17-44", "John.11:45-12:19", "John.12:20-50", "John.13:1-30", "John.13:31-14:18", "John.14:19-15:17", "John.15:18-16:24", "John.16:25-17:19", "John.17:20-18:11", "John.18:12-40", "John.19:1-30", "John.19:31-20:18", "John.20:19-21:25"]
+    },
+    {
+      "id"=>"102",
+      "days"=> ["Luke.1", "Luke.2", "Luke.3", "Luke.4", "Luke.5", "Luke.6", "Luke.7", "Luke.8", "Luke.9", "Luke.10", "Luke.11", "Luke.12", "Luke.13", "Luke.14", "Luke.15", "Luke.16", "Luke.17", "Luke.18", "Luke.19", "Luke.20", "Luke.21", "Luke.22", "Luke.23", "Luke.24"]
+    },
+    {
+      "id"=>"103",
+      "days"=> ["Matthew.1", "Matthew.2", "Matthew.3", "Matthew.4", "Matthew.5", "Matthew.6", "Matthew.7", "Matthew.8", "Matthew.9", "Matthew.10", "Matthew.11", "Matthew.12", "Matthew.13", "Matthew.14", "Matthew.15", "Matthew.16", "Matthew.17", "Matthew.18", "Matthew.19", "Matthew.20", "Matthew.21", "Matthew.22", "Matthew.23", "Matthew.24", "Matthew.25", "Matthew.26", "Matthew.27"]
+    },
+    {
+      "id"=>"104",
+      "days"=> ["Mark.1", "Mark.2", "Mark.3", "Mark.4", "Mark.5", "Mark.6", "Mark.7", "Mark.8", "Mark.9", "Mark.10", "Mark.11", "Mark.12", "Mark.13", "Mark.14", "Mark.15", "Mark.16"]
+    },
   ]
 
   def verses
     passage = READING_PLAN.select{ |p| p['id'] == params[:plan_id] }.first["days"][params[:day].to_i - 1]
-    url = "https://bibles.org/v2/eng-ESV/passages.xml?q[]=#{passage}"
-    c = Curl::Easy.new(url)
-    c.http_auth_types = :basic
-    c.username = 'wqZRG1WwyhSSh35OZdjGpRJq3acON5PT1YQI1IeW'
-    c.follow_location = true
-    c.max_redirects = 3
-    c.password = 'bar'
-    puts c.inspect
-    c.perform
 
-    text = ''
-    xmlDoc = Document.new(c.body)
-    XPath.each(xmlDoc, "//passage") do |e|
-      text += e.elements['text'].text
-      text += '<div class=scripture>' + e.elements['display'].text + '</div>'
+    if (cache = Cache.find_by_passage(passage)).present?
+      text = cache.text
+    else
+      url = "https://bibles.org/v2/eng-ESV/passages.xml?q[]=#{passage}"
+      c = Curl::Easy.new(url)
+      c.http_auth_types = :basic
+      c.username = 'wqZRG1WwyhSSh35OZdjGpRJq3acON5PT1YQI1IeW'
+      c.follow_location = true
+      c.max_redirects = 3
+      c.password = 'bar'
+      puts c.inspect
+      c.perform
+
+      text = ''
+      xmlDoc = Document.new(c.body)
+      XPath.each(xmlDoc, "//passage") do |e|
+        text += e.elements['text'].text
+        text += '<div class=scripture>' + e.elements['display'].text + '</div>'
+      end
+
+      if Cache.find_by_passage(passage).nil?
+        Cache.create({passage: passage, text: text})
+      end
     end
 
     log_usage('READ')
@@ -314,6 +307,18 @@ class PageController < ApplicationController
     end
 
     render text: output.to_json
+  end
+
+  def menu
+    render text: %q(
+    <ul>
+      <li><a id='news' data-latest-news-update='7-13-2015' href='http://blog.bibleverseapp.com/post/123792926043/new-feature' target='_blank'>What's New</a></li>
+      <li><a id='site' href='http://www.rickwarren.org/devotional' target='_blank'>Site Of The Week</a></li>
+      <li><a id='share' href='http://www.bibleverseapp.com' target='_blank'>Share with Friends</a></li>
+      <li><a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Rate This Extension</a></li>
+      <li><a id='feedback' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Feedback</a></li>
+    </ul>
+    )
   end
 
   private
