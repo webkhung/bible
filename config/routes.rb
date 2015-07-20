@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get 'memorized_verses_with_count' => 'page#memorized_verses_with_count'
   get 'memorized_stats_weekly' => 'page#memorized_stats_weekly'
   get 'menu' => 'page#menu'
-
+  get 'startup_data' => 'page#startup_data'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

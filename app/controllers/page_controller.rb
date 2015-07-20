@@ -312,13 +312,50 @@ class PageController < ApplicationController
   def menu
     render text: %q(
     <ul>
-      <li><a id='news' data-latest-news-update='7-13-2015' href='http://blog.bibleverseapp.com/post/123792926043/new-feature' target='_blank'>What's New</a></li>
-      <li><a id='site' href='http://www.rickwarren.org/devotional' target='_blank'>Site Of The Week</a></li>
-      <li><a id='share' href='http://www.bibleverseapp.com' target='_blank'>Share with Friends</a></li>
-      <li><a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Rate This Extension</a></li>
-      <li><a id='feedback' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Feedback</a></li>
+      <li>
+        <p><strong>What's New</strong></p>
+        <p>7-20-2015: You can now remove a plan from your plans.
+        <p>7-13-2015: You can now add books of Bible to your plans.  The books are broken down into verses that you can read on a daily basis as you open new tabs.</p>
+      </li>
+      <li>
+        <p><strong>Support Our Work</strong></p>
+        <p>Help spread God's words to more people!</p>
+        <p><a id='share' href='http://www.bibleverseapp.com' target='_blank'>Share It</a></p>
+        <p>Connect with us!</p>
+        <p><a id='fb' href='https://www.facebook.com/pages/My-Daily-Bible-Verse/1643317539236200' target='_blank'>Like our Facebook page</a></p>
+        <p>Encouragement</p>
+        <p><a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Rate it or leave a feedback</a></p>
+      </li>
     </ul>
     )
+  end
+
+  def startup_data
+    menu_html = %q(
+    <ul>
+      <li>
+        <p><strong>What's New</strong></p>
+        <p>7-20-2015: You can now remove a plan from your plans.
+        <p>7-13-2015: You can now add books of Bible to your plans.  The books are broken down into verses that you can read on a daily basis as you open new tabs.</p>
+      </li>
+      <li>
+        <p><strong>Support My Work</strong></p>
+        <p>Help spread God's words to more people!</p>
+        <p><a id='share' href='http://www.bibleverseapp.com' target='_blank'>Share It</a></p>
+        <p>Connect with me!</p>
+        <p><a id='fb' href='https://www.facebook.com/pages/My-Daily-Bible-Verse/1643317539236200' target='_blank'>Like the Facebook page</a></p>
+        <p>Encourage me!</p>
+        <p><a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Rate it or leave a feedback</a></p>
+      </li>
+    </ul>
+    )
+    site_of_the_week = 'http://faithreel.com/'
+
+    output = {}
+    output['menu'] = menu_html
+    output['site_of_the_week'] = site_of_the_week
+
+    render text: output.to_json
   end
 
   private
