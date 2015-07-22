@@ -242,7 +242,7 @@ class PageController < ApplicationController
     end
 
     if Rails.env == 'production'
-      sql = "select #{time_sql}, user_name, count(*) from usages where usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by timezone desc, count(*) desc;"
+      sql = "select #{time_sql}, user_name, count(*) from usages where user_name not like 'homepage' usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by timezone desc, count(*) desc;"
 
       stats = ActiveRecord::Base.connection.execute(sql)
       stats.each do |row|
@@ -283,6 +283,8 @@ class PageController < ApplicationController
     
     render text: output_sorted.to_json
   end
+
+
 
   def bg_rating
     @rating = Usage.where("usage_type like 'RATE-BG' and created_at > '2015-07-01 02:09:45'").select('details').group('details').order('count(*) desc').count
