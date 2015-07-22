@@ -242,7 +242,7 @@ class PageController < ApplicationController
     end
 
     if Rails.env == 'production'
-      sql = "select #{time_sql}, user_name, count(*) from usages where user_name not like 'homepage' usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by timezone desc, count(*) desc;"
+      sql = "select #{time_sql}, user_name, count(*) from usages where user_name not like 'homepage' and usage_type like 'ANSWERED_CORRECT' group by user_name, #{time_sql} order by timezone desc, count(*) desc;"
 
       stats = ActiveRecord::Base.connection.execute(sql)
       stats.each do |row|
