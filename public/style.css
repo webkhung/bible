@@ -525,6 +525,24 @@ h2 {
 .circle12, .circle-solid-12 { border: 2px solid #d341ff; }
 .circle-solid-12 { background-color: #d341ff; }
 
+.circle13, .circle-solid-13 { border: 2px solid #4e6ac3; }
+.circle-solid-13 { background-color: #4e6ac3; }
+
+.circle100, .circle-solid-100 { border: 2px solid #88eeff; }
+.circle-solid-100 { background-color: #88eeff; }
+
+.circle101, .circle-solid-101 { border: 2px solid #F4CC00; }
+.circle-solid-101 { background-color: #F4CC00; }
+
+.circle102, .circle-solid-102 { border: 2px solid #b8a3ff; }
+.circle-solid-102 { background-color: #b8a3ff; }
+
+.circle103, .circle-solid-103 { border: 2px solid #ffa496; }
+.circle-solid-103 { background-color: #ffa496; }
+
+.circle104, .circle-solid-104 { border: 2px solid #ff2825; }
+.circle-solid-104 { background-color: #ff2825; }
+
 .circle .circle-inner {
     padding-top: 19px;
     font-size: 16px;
