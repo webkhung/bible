@@ -323,11 +323,11 @@ function Game(){
         $p.find('.s1').remove();
 
         if(memorizedCount == 0){
-            final = $p.text().replace(/\s+/g,' ');
+            final = $p.text().replace(/“/g,'').replace(/\s+/g,' ');
         }
         else {
             $scripture = $p.find('.scripture').remove();
-            final = game.hideWords($p.text(), memorizedCount, $scripture);
+            final = game.hideWords($p.text().replace(/“/g,''), memorizedCount, $scripture);
         }
 
         console.log('memorizedCount ' + memorizedCount);
