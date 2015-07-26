@@ -58,6 +58,10 @@ class PageController < ApplicationController
       "days"=> ["Galatians.6:9","3John.1:8","Ecclesiastes.11:1-2","1Timothy.6:18","Proverbs.21:5","Deuteronomy.8:18","Matthew.6:24"]
     },
     {
+      "id"=>"14",
+      "days"=> ["John.3:16","Philippians.4:6","Romans.12:2","Galatians.2:20","Romans.6:23","Romans.12:1","Ephesians.2:8","Philippians.4:7","Romans.8:28","Psalms.1:1","Romans.5:8","Proverbs.3:5","Hebrews.12:1","Romans.3:23","Genesis.1:1","Proverbs.3:6","Philippians.4:8","Psalms.119:11","Psalms.1:2","Galatians.5:22","2.Timothy.3:16","Philippians.4:13","Psalms.23:1","Ephesians.2:9","John.1:1","Psalms.1:3","2.Corinthians.5:17","Psalms.23:6","Psalms.23:4","Psalms.23:2","Psalms.23:3","1.John.1:9","Psalms.23:5","James.1:2","Psalms.1:6","Joshua.1:8","Psalms.1:5","Psalms.1:4","Jeremiah.29:11","2.Timothy.3:17","James.1:3","Galatians.5:23","Hebrews.4:12","Romans.8:1","John.3:17","Hebrews.11:1","James.1:4","James.1:5","John.1:2","Matthew.5:16"]
+    },
+    {
       "id"=>"100",
       "days"=> ["Genesis.1-2", "Genesis.3-5", "Genesis.6-8", "Genesis.9-11", "Genesis.12-14", "Genesis.15-17", "Genesis.18-19", "Genesis.20-22", "Genesis.23-24", "Genesis.25-26", "Genesis.27-28", "Genesis.29-30", "Genesis.31-32", "Genesis.33-35", "Genesis.36-37", "Genesis.38-40", "Genesis.41", "Genesis.42-43", "Genesis.44-45", "Genesis.46-48", "Genesis.49-50"]
     },
@@ -76,6 +80,18 @@ class PageController < ApplicationController
     {
       "id"=>"104",
       "days"=> ["Mark.1", "Mark.2", "Mark.3", "Mark.4", "Mark.5", "Mark.6", "Mark.7", "Mark.8", "Mark.9", "Mark.10", "Mark.11", "Mark.12", "Mark.13", "Mark.14", "Mark.15", "Mark.16"]
+    },
+    {
+      "id"=>"105",
+      "days"=> ["Acts.1", "Acts.2", "Acts.3", "Acts.4", "Acts.5", "Acts.6", "Acts.7", "Acts.8", "Acts.9", "Acts.10", "Acts.11", "Acts.12", "Acts.13", "Acts.14", "Acts.15", "Acts.16", "Acts.17", "Acts.18", "Acts.19", "Acts.20", "Acts.21", "Acts.22", "Acts.23", "Acts.24", "Acts.25", "Acts.26", "Acts.27", "Acts.28"]
+    },
+    {
+      "id"=>"106",
+      "days"=> ["psalm.1", "psalm.2", "psalm.3", "psalm.4", "psalm.5", "psalm.6", "psalm.7", "psalm.8", "psalm.9", "psalm.10", "psalm.11", "psalm.12", "psalm.13", "psalm.14", "psalm.15", "psalm.16", "psalm.17", "psalm.18", "psalm.19", "psalm.20", "psalm.21", "psalm.22", "psalm.23", "psalm.24", "psalm.25", "psalm.26", "psalm.27", "psalm.28", "psalm.29", "psalm.30","psalm.31", "psalm.32", "psalm.33", "psalm.34", "psalm.35", "psalm.36", "psalm.37", "psalm.38", "psalm.39", "psalm.40", "psalm.41", "psalm.42", "psalm.43", "psalm.44", "psalm.45", "psalm.46", "psalm.47", "psalm.48", "psalm.49", "psalm.50", "psalm.51", "psalm.52", "psalm.53", "psalm.54", "psalm.55", "psalm.56", "psalm.57", "psalm.58", "psalm.59", "psalm.60", "psalm.61", "psalm.62", "psalm.63", "psalm.64", "psalm.65", "psalm.66", "psalm.67", "psalm.68", "psalm.69", "psalm.70", "psalm.71", "psalm.72", "psalm.73", "psalm.74", "psalm.75", "psalm.76", "psalm.77", "psalm.78", "psalm.79", "psalm.80", "psalm.81", "psalm.82", "psalm.83", "psalm.84", "psalm.85", "psalm.86", "psalm.87", "psalm.88", "psalm.89", "psalm.90", "psalm.91", "psalm.92", "psalm.93", "psalm.94", "psalm.95", "psalm.96", "psalm.97", "psalm.98", "psalm.99", "psalm.100", "psalm.101", "psalm.102", "psalm.103", "psalm.104", "psalm.105", "psalm.106", "psalm.107", "psalm.108", "psalm.109", "psalm.110", "psalm.111", "psalm.112", "psalm.113", "psalm.114", "psalm.115", "psalm.116", "psalm.117", "psalm.118", "psalm.119", "psalm.120", "psalm.121", "psalm.122", "psalm.123", "psalm.124", "psalm.125", "psalm.126", "psalm.127", "psalm.128", "psalm.129", "psalm.130", "psalm.131", "psalm.132", "psalm.133", "psalm.134", "psalm.135", "psalm.136", "psalm.137", "psalm.138", "psalm.139", "psalm.140", "psalm.141", "psalm.142", "psalm.143", "psalm.144", "psalm.145", "psalm.146", "psalm.147", "psalm.148", "psalm.149",  "psalm.150"]
+    },
+    {
+      "id"=>"107",
+      "days"=> ["Romans.1:1-15", "Romans.1:16-32", "Romans.2:1-11", "Romans.2:12-29", "Romans.3:1-8", "Romans.3:9-20", "Romans.3:21-31", "Romans.4:1-12", "Romans.4:13-25", "Romans.5:1-20", "Romans.6:1-14", "Romans.6:15-23", "Romans.7:1-6", "Romans.7:7-25", "Romans.8:1-11", "Romans.8:12-30", "Romans.8:31-39", "Romans.9:1-18", "Romans.9:19-33", "Romans.10:1-21", "Romans.11:1-10", "Romans.11:11-36", "Romans.12:1-8", "Romans.12:9-21", "Romans.13:1-7", "Romans.13:8-14", "Romans.14:1-12", "Romans.14:13-23", "Romans.15:1-13", "Romans.15:14-33", "Romans.16:1-27"]
     },
   ]
 
@@ -132,14 +148,14 @@ class PageController < ApplicationController
     old = Usage.select(:user_name).where('created_at < ?', 3.days.ago).distinct.pluck(:user_name).compact
     @new_users = all - old
 
-    @usage_by_date = Usage.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 2.weeks.ago).group('date(created_at)').order('date(created_at) desc').count('distinct(user_name)')
+    @usage_by_date = Usage.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 1.weeks.ago).group('date(created_at)').order('date(created_at) desc').count('distinct(user_name)')
 
     order_sql = case params['sort']
     when 'users' then 'user_name, created_at desc'
     when 'time' then 'created_at desc'
     else 'DATE(created_at) desc, user_name, created_at desc'
     end
-    @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 2.weeks.ago).order(order_sql)
+    @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 1.weeks.ago).order(order_sql)
 
     sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages group by user_name order by max(created_at) desc, min(created_at) desc"
     @overall_duration = ActiveRecord::Base.connection.execute(sql)
@@ -337,17 +353,14 @@ class PageController < ApplicationController
     <ul>
       <li>
         <p><strong>What's New</strong></p>
-        <p>7-20-2015: You can now remove a plan from your plans.
-        <p>7-13-2015: You can now add books of Bible to your plans.  The books are broken down into verses that you can read on a daily basis as you open new tabs.</p>
+        <p>7-27-2015: We have added more reading plans, check it out!</p>
+        <p>7-20-2015: You can now remove a plan from your plans.</p>
       </li>
       <li>
         <p><strong>Support My Work</strong></p>
-        <p>Help spread God's words to more people!</p>
-        <p><a id='share' href='http://www.bibleverseapp.com' target='_blank'>Share It</a></p>
-        <p>Connect with me!</p>
-        <p><a id='fb' href='https://www.facebook.com/pages/My-Daily-Bible-Verse/1643317539236200' target='_blank'>Like the Facebook page</a></p>
-        <p>Encourage me!</p>
-        <p><a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Rate it or leave a feedback</a></p>
+        <p>Tell your friends about <a id='share' href='http://www.bibleverseapp.com' target='_blank'>Daily Bible Verse</a></p>
+        <p>Like the <a id='fb' href='https://www.facebook.com/pages/My-Daily-Bible-Verse/1643317539236200' target='_blank'>Facebook page</a></p>
+        <p>Rate or leave feedback <a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>here</a></p>
       </li>
     </ul>
     )

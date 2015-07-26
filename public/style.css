@@ -83,7 +83,7 @@ p {
 
 #plansSelectorHeader h1 {
     font-size: 22px;
-    color: #C537FF;
+    color: #FFDE37;
 }
 
 h1 {
@@ -97,7 +97,7 @@ h1 {
 h2 {
     text-align: center;
     margin: 10px 0;
-    color: #3C3C3C;
+    color: #333333;
     font-weight: bold;
     font-size: 16px;
 }
@@ -115,6 +115,14 @@ h2 {
     float: left;
     background-color: rgba(255, 255, 255, 0.60);
     text-align: center;
+    -moz-border-radius:8px;
+    -webkit-border-radius:8px;
+    border-radius:8px;
+}
+
+#plans-selector .plan-container:hover
+{
+    background-color: #ffe32b;
 }
 
 .plan-right {
@@ -170,7 +178,7 @@ h2 {
 #plans-selector .plan-name {
 
     font-size: 18px;
-    color: #5E5E5E;
+    color: #444343;
     font-weight: 500;
 }
 
@@ -333,16 +341,16 @@ h2 {
 
 .myButton {
     background-color:#44c767;
-    -moz-border-radius:28px;
-    -webkit-border-radius:28px;
-    border-radius:28px;
+    -moz-border-radius:20px;
+    -webkit-border-radius:20px;
+    border-radius:20px;
     border:1px solid #18ab29;
     display:inline-block;
     cursor:pointer;
     color:#ffffff;
-    font-family:arial;
+    /*font-family:arial;*/
     font-size:17px;
-    padding:16px 31px;
+    padding:10px 31px;
     text-decoration:none;
     text-shadow:0px 1px 0px #2f6627;
 }
@@ -528,6 +536,9 @@ h2 {
 .circle13, .circle-solid-13 { border: 2px solid #4e6ac3; }
 .circle-solid-13 { background-color: #4e6ac3; }
 
+.circle14, .circle-solid-14 { border: 2px solid #F4CC00; }
+.circle-solid-14 { background-color: #F4CC00; }
+
 .circle100, .circle-solid-100 { border: 2px solid #88eeff; }
 .circle-solid-100 { background-color: #88eeff; }
 
@@ -542,6 +553,15 @@ h2 {
 
 .circle104, .circle-solid-104 { border: 2px solid #ff2825; }
 .circle-solid-104 { background-color: #ff2825; }
+
+.circle105, .circle-solid-105 { border: 2px solid #ff2825; }
+.circle-solid-105 { background-color: #ff2825; }
+
+.circle106, .circle-solid-106 { border: 2px solid #eda400; }
+.circle-solid-106 { background-color: #eda400; }
+
+.circle107, .circle-solid-107 { border: 2px solid #4e6ac3; }
+.circle-solid-107 { background-color: #4e6ac3; }
 
 .circle .circle-inner {
     padding-top: 19px;
@@ -628,14 +648,16 @@ h2 {
     position: relative !important;
     top: -2px;
     height: 29px;
+    color: #FFD500;
 }
 
 input.correct {
-    background-color: rgb(251, 255, 115) !important;
+    /*background-color: rgb(251, 255, 115) !important;*/
 }
 
 input.wrong {
-    background-color: rgb(255, 147, 147) !important;
+    color: rgb(255, 147, 147) !important;
+    /*background-color: rgb(255, 147, 147) !important;*/
 }
 
 .jmeter .outer-therm{
@@ -672,35 +694,34 @@ input.wrong {
     text-transform: capitalize;
 }
 
-#users, #bg-rating {
-    text-align: right;
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
+ul.vertical-list {
+    list-style-type: none;
     color: #fff;
     font-size: 12px;
-    opacity: 0.7;
-    z-index: 10;
+    opacity: 1;
+    text-align: right;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 0;
 }
 
-#users #user-header {
-    font-weight: bold;
-}
-
-#users ul, #bg-rating ul {
-    list-style-type: none;
-}
-
-#bg-rating ul li a {
+ul.vertical-list li a {
     color: white;
-    font-size: 13px;
+    font-size: 12px;
     text-decoration: none;
-    line-height: 1.5em;
+    line-height: 1.6em;
 }
 
-#bg-rating ul li a:hover {
-    color: #ff5a17;
+ul.vertical-list li a:hover {
     text-decoration: underline;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
 }
 
 .blink_me {
