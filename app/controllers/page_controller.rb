@@ -353,7 +353,7 @@ class PageController < ApplicationController
     <ul>
       <li>
         <p><strong>What's New</strong></p>
-        <p>7-27-2015: We have added more reading plans, check it out!</p>
+        <p>7-26-2015: Added more reading plans and included verse number in memorization game (suggested by Christina)!</p>
         <p>7-20-2015: You can now remove a plan from your plans.</p>
       </li>
       <li>
