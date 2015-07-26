@@ -59,7 +59,7 @@ class PageController < ApplicationController
     },
     {
       "id"=>"14",
-      "days"=> ["John.3:16","Philippians.4:6","Romans.12:2","Galatians.2:20","Romans.6:23","Romans.12:1","Ephesians.2:8","Philippians.4:7","Romans.8:28","Psalms.1:1","Romans.5:8","Proverbs.3:5","Hebrews.12:1","Romans.3:23","Genesis.1:1","Proverbs.3:6","Philippians.4:8","Psalms.119:11","Psalms.1:2","Galatians.5:22","2.Timothy.3:16","Philippians.4:13","Psalms.23:1","Ephesians.2:9","John.1:1","Psalms.1:3","2.Corinthians.5:17","Psalms.23:6","Psalms.23:4","Psalms.23:2","Psalms.23:3","1.John.1:9","Psalms.23:5","James.1:2","Psalms.1:6","Joshua.1:8","Psalms.1:5","Psalms.1:4","Jeremiah.29:11","2.Timothy.3:17","James.1:3","Galatians.5:23","Hebrews.4:12","Romans.8:1","John.3:17","Hebrews.11:1","James.1:4","James.1:5","John.1:2","Matthew.5:16"]
+      "days"=> ["Philippians.4:6","John.3:16","Romans.12:2","Galatians.2:20","Romans.6:23","Romans.12:1","Ephesians.2:8","Philippians.4:7","Romans.8:28","Psalms.1:1","Romans.5:8","Proverbs.3:5","Hebrews.12:1","Romans.3:23","Genesis.1:1","Proverbs.3:6","Philippians.4:8","Psalms.119:11","Psalms.1:2","Galatians.5:22","2.Timothy.3:16","Philippians.4:13","Psalms.23:1","Ephesians.2:9","John.1:1","Psalms.1:3","2.Corinthians.5:17","Psalms.23:6","Psalms.23:4","Psalms.23:2","Psalms.23:3","1.John.1:9","Psalms.23:5","James.1:2","Psalms.1:6","Joshua.1:8","Psalms.1:5","Psalms.1:4","Jeremiah.29:11","2.Timothy.3:17","James.1:3","Galatians.5:23","Hebrews.4:12","Romans.8:1","John.3:17","Hebrews.11:1","James.1:4","James.1:5","John.1:2","Matthew.5:16"]
     },
     {
       "id"=>"100",
