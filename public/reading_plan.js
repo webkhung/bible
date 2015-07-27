@@ -930,6 +930,8 @@ $( document ).ready(function() {
 
     $('#chrome-app-store').click(function(){ trackClicked('chrome-app-store-clicked') });
     $('#about').click(function(){ trackClicked('about-clicked') });
+    $('#blog').click(function(){ trackClicked('blog-clicked') });
+    $('#how-it-works').click(function(){ trackClicked('how-it-works-clicked') });
 });
 
 if (chrome.app.isInstalled) {

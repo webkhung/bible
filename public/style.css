@@ -949,3 +949,21 @@ ul.vertical-list li a:hover {
     font-size: 10px;
     font-weight: 200;
 }
+
+#bottom-links {
+     position: absolute;
+     bottom: 41px;
+     right: 11px;
+     color: white;
+     font-size: 15px;
+}
+
+#bottom-links a {
+    color: white;
+    text-decoration: none;
+    padding-left: 10px;
+}
+
+#bottom-links a:hover {
+    text-decoration: underline;
+}
