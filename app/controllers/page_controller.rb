@@ -62,6 +62,18 @@ class PageController < ApplicationController
       "days"=> ["Philippians.4:6","John.3:16","Romans.12:2","Galatians.2:20","Romans.6:23","Romans.12:1","Ephesians.2:8","Philippians.4:7","Romans.8:28","Psalms.1:1","Romans.5:8","Proverbs.3:5","Hebrews.12:1","Romans.3:23","Genesis.1:1","Proverbs.3:6","Philippians.4:8","Psalms.119:11","Psalms.1:2","Galatians.5:22","2.Timothy.3:16","Philippians.4:13","Psalms.23:1","Ephesians.2:9","John.1:1","Psalms.1:3","2.Corinthians.5:17","Psalms.23:6","Psalms.23:4","Psalms.23:2","Psalms.23:3","1.John.1:9","Psalms.23:5","James.1:2","Psalms.1:6","Joshua.1:8","Psalms.1:5","Psalms.1:4","Jeremiah.29:11","2.Timothy.3:17","James.1:3","Galatians.5:23","Hebrews.4:12","Romans.8:1","John.3:17","Hebrews.11:1","James.1:4","James.1:5","John.1:2","Matthew.5:16"]
     },
     {
+      "id"=>"15",
+      "days"=> ["Proverbs.18:22", "Colossians.3:18-19", "Proverbs.31:10", "1Corinthians.7:2", "Proverbs.16:9", "Genesis.2:18"]
+    },
+    {
+      "id"=>"16",
+      "days"=> ["Ephesians.3:16-17","Mark.11:24","Hebrews.11:1","Romans.15:13","James.1:6","1Peter.1:8-9","Hebrews.11:6","James.1:3","John.11:40","John.11:25-26","Romans.14:1","1Timothy.6:11","1Corinthians.13:2","1John.5:4","Psalm.119:30","John.6:35","Romans.10:10","Mark.10:52","Hebrews.11:11","Romans.1:17","Galatians.3:26-27","John.3:16","John.6:29","Mark.16:16","1John.5:13","Acts.16:31","2Corinthians.5:7","2Thessalonians.1:3","Hebrews.12:2","John.7:38","Galatians.2:20","1John.5:5","Romans.12:3","Philippians.1:29","1Timothy.6:6","Galatians.3:22","Romans.10:9","1Timothy.4:12","1Corinthians.13:13","Romans.3:21-22","John.1:12","Romans.1:16","1Thessalonians.4:14","Romans.14:4","Ephesians.2:8-9","Galatians.2:15-16","1Corinthians.15:1-2","Galatians.5:6","Romans.10:4","John.3:18"]
+    },
+    {
+      "id"=>"17",
+      "days"=> ["Isaiah.41:10","Isaiah.40:31","Psalm.73:26","Isaiah.40:29","Philippians.4:13","2Timothy.1:7","2Thessalonians.3:3","Psalm.59:16","Jeremiah.32:17","1Chronicles.16:11","Psalm.18:1-2","Ephesians.3:20-21","Habakkuk.3:19","Psalm.18:31","Job.37:23","2Corinthians.12:10"]
+    },
+    {
       "id"=>"100",
       "days"=> ["Genesis.1-2", "Genesis.3-5", "Genesis.6-8", "Genesis.9-11", "Genesis.12-14", "Genesis.15-17", "Genesis.18-19", "Genesis.20-22", "Genesis.23-24", "Genesis.25-26", "Genesis.27-28", "Genesis.29-30", "Genesis.31-32", "Genesis.33-35", "Genesis.36-37", "Genesis.38-40", "Genesis.41", "Genesis.42-43", "Genesis.44-45", "Genesis.46-48", "Genesis.49-50"]
     },
@@ -353,8 +365,8 @@ class PageController < ApplicationController
     <ul>
       <li>
         <p><strong>What's New</strong></p>
+        <p>7-29-2015: New plans added: Faith, Strength, and Marriage!</p>
         <p>7-26-2015: Added more reading plans and included verse number in memorization game (suggested by Christina)!</p>
-        <p>7-20-2015: You can now remove a plan from your plans.</p>
       </li>
       <li>
         <p><strong>Support My Work</strong></p>
