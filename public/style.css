@@ -967,3 +967,7 @@ ul.vertical-list li a:hover {
 #bottom-links a:hover {
     text-decoration: underline;
 }
+
+#install-container {
+    display: none;
+}

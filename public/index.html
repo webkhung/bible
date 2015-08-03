@@ -25,10 +25,10 @@
     <div class="bg"></div>
     <div class="bg hidden"></div>
     <div class='maincontainer'>
-        <a id='new-plan-link' href='#' class='hide-in-memorize hide-in-select-plans' >
-            <img src='images/add.png' style='width:50px;height:50px;vertical-align:middle'>
-            <div style='font-size: 12px'> Add Plan</div>
-        </a>
+        <!--<a id='new-plan-link' href='#' class='hide-in-memorize hide-in-select-plans' >-->
+            <!--<img src='images/add.png' style='width:50px;height:50px;vertical-align:middle'>-->
+            <!--<div style='font-size: 12px'> Add Plan</div>-->
+        <!--</a>-->
 
         <a id='chrome-app-store' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji'>
             <span class="small">Available on the</span><br>Chrome Web Store
@@ -41,30 +41,44 @@
             <div id='passages'></div>
             <div id='message'></div>
             <div style='text-align:center;'>
-                <div class='buttons-container'>
-                    <a id='reveal-button' class='wide' href='#'></a>
-                    <a id='hint-button' class='wide' href='#'>Need a Hint?</a>
+                <div id='install-container'>
+                    <p id='rotate-text' style='font-size:20px;text-decoration: underline'>What you just saw is a demo of the Daily Bible Version Chrome Extension</p>
+                    <div style='margin-bottom:50px;'>
+                        <iframe width="560" height="315" src="https://www.youtube.com/embed/x1xZhJTpdDo?rel=0" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                    <a id="install-button" class='white-button'><img src="images/plus-24.png"> Add Bible Verse to Chrome</a>
+                    <p id="not-chrome" class='white-text'>
+                        Daily Bible Verse runs on Google Chrome.<br><br>
+                        <a target="_blank" href="https://www.google.com/intl/en_ca/chrome/browser/" class="white-button">&#x25BC; Download Chrome</a>
+                    </p>
+                    <p id='install-completed' class='white-text'>&#10004; Daily Bible Verse is installed. Open a new tab to launch.</p>
+                    <p id='install-failed' class='white-text'>&#x2716; Daily Bible Verse had trouble installing.</p>
+
                 </div>
-                <div id='ticks' style='display: none'>
-                    <span class='tick-circle'><span>&#10004;</span></span>
-                    <span class='tick-circle'><span>&#10004;</span></span>
-                    <span class='tick-circle'><span>&#10004;</span></span>
-                </div>
+                <!--<div class='buttons-container'>-->
+                    <!--<a id='reveal-button' class='wide' href='#'></a>-->
+                    <!--<a id='hint-button' class='wide' href='#'>Need a Hint?</a>-->
+                <!--</div>-->
+                <!--<div id='ticks' style='display: none'>-->
+                    <!--<span class='tick-circle'><span>&#10004;</span></span>-->
+                    <!--<span class='tick-circle'><span>&#10004;</span></span>-->
+                    <!--<span class='tick-circle'><span>&#10004;</span></span>-->
+                <!--</div>-->
             </div>
         </div>
 
         <div id='bottom'>
-            <div style='text-align: center;padding-bottom:70px'  class='hide-in-select-plans'>
-                <p id='rotate-text'>Daily <span class="rotate">Bible Verse, Bible Reading, Blessing, Memorization, Devotion, Photography</span> on your new tab page.</p>
-                <a id="install-button" class='white-button'><img src="images/plus-24.png"> Add Bible Verse to Chrome</a>
-                <p id="not-chrome" class='white-text'>
-                    Daily Bible Verse runs on Google Chrome.<br><br>
-                    <a target="_blank" href="https://www.google.com/intl/en_ca/chrome/browser/" class="white-button">&#x25BC; Download Chrome</a>
-                </p>
-                <p id='install-completed' class='white-text'>&#10004; Daily Bible Verse is installed. Open a new tab to launch.</p>
-                <p id='install-failed' class='white-text'>&#x2716; Daily Bible Verse had trouble installing.</p>
-            </div>
-            <div id='added-plans'></div>
+            <!--<div style='text-align: center;padding-bottom:70px'  class='hide-in-select-plans'>-->
+                <!--&lt;!&ndash;<p id='rotate-text'>Daily <span class="rotate">Bible Verse, Bible Reading, Blessing, Memorization, Devotion, Photography</span> on your new tab page.</p>&ndash;&gt;-->
+                <!--<a id="install-button" class='white-button'><img src="images/plus-24.png"> Add Bible Verse to Chrome</a>-->
+                <!--<p id="not-chrome" class='white-text'>-->
+                    <!--Daily Bible Verse runs on Google Chrome.<br><br>-->
+                    <!--<a target="_blank" href="https://www.google.com/intl/en_ca/chrome/browser/" class="white-button">&#x25BC; Download Chrome</a>-->
+                <!--</p>-->
+                <!--<p id='install-completed' class='white-text'>&#10004; Daily Bible Verse is installed. Open a new tab to launch.</p>-->
+                <!--<p id='install-failed' class='white-text'>&#x2716; Daily Bible Verse had trouble installing.</p>-->
+            <!--</div>-->
+            <!--<div id='added-plans'></div>-->
             <div id='completed-plans'></div>
         </div>
 

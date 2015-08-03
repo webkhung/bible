@@ -36,7 +36,7 @@ var readingPlans = [
     },
     {
         "id": "3",
-        "name": "Love Part 2",
+        "name": "Love",
         "badge": "",
         "description": "",
         "days": ["Ephesians.5:33","Colossians.3:14","Proverbs.10:12","Proverbs.17:17","1John.3:16-18","1John.4:8","John.3:16","Psalm.18:1","Matthew.22:27-29","Deuteronomy.10:12-19","Song of Solomon.8:4-8","Matthew.6:24","Matthew.22:37-39","Matthew.23:6-8"]
@@ -483,7 +483,7 @@ function HTMLRender(){
             var fadeInTime = objPlans[selectedPlanId].type == 'book' ? 0 : 2000;
             var strCompleted = (objPlans[selectedPlanId].completed()) ? ' (Completed)' : '';
             var strDays = '<div>Day ' + day + ' of ' + objPlans[selectedPlanId].numOfDays + strCompleted + '</div>';
-            var header = objPlans[selectedPlanId].name + strDays;
+            var header = objPlans[selectedPlanId].name; // + strDays;
             $('#passage-header').hide().html(header).fadeIn(fadeInTime);
         }
     }
@@ -646,6 +646,7 @@ function HTMLRender(){
                     bgClear();
                     $('#reveal-button').hide().css('visibility','visible').text('Memorize').data('start-memorize', true).fadeIn('slow');
                     $('#memorized-stats-weekly').fadeIn();
+                    $('#install-container').fadeIn(4000);
                     usageType = 'VIEWED-LIKE';
                     $.get('http://' + HOST + '/usage', { usage_type: usageType, plan_id: planId, day: day, user_id: userId, user_name: userName, details: verses.length });
                 }}});
@@ -899,7 +900,7 @@ $( document ).ready(function() {
     userName = 'homepage';
     objPlans['1'].added = true;
 
-    versesNext();
+    versesNext(3, 7);
     $('#reveal-button, #hint-button').click(revealClicked);
     $('.maincontainer').on('click', '#new-plan-link', function(){
         htmlRender.screenPlanSelector();
