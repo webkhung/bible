@@ -646,7 +646,7 @@ function HTMLRender(){
                     bgClear();
                     $('#reveal-button').hide().css('visibility','visible').text('Memorize').data('start-memorize', true).fadeIn('slow');
                     $('#memorized-stats-weekly').fadeIn();
-                    $('#install-container').fadeIn(4000);
+                    $('#install-container').fadeIn(3000);
                     usageType = 'VIEWED-LIKE';
                     $.get('http://' + HOST + '/usage', { usage_type: usageType, plan_id: planId, day: day, user_id: userId, user_name: userName, details: verses.length });
                 }}});
