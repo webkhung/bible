@@ -760,7 +760,7 @@ ul.vertical-list li a:hover {
 }
 
 #passages-container {
-    margin-top: 90px;
+    margin-top: 50px;
 }
 
 #passages-container #passage-header {
@@ -970,4 +970,11 @@ ul.vertical-list li a:hover {
 
 #install-container {
     display: none;
+}
+
+.header {
+    font-size: 15px;
+    color: white;
+    opacity: 0.7;
+    text-align: center;
 }
