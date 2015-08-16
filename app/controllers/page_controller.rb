@@ -386,6 +386,7 @@ class PageController < ApplicationController
     <ul>
       <li>
         <p><strong>What's New</strong></p>
+        <p>8-15-2015: Let's praise the Lord everyday! You can share your gratitude with other people and a chance to win prizes (details coming soon).</p>
         <p>7-29-2015: New plans added: Faith, Strength, and Marriage!</p>
         <p>7-26-2015: Added more reading plans and included verse number in memorization game (suggested by Christina)!</p>
       </li>
