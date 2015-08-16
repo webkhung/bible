@@ -402,7 +402,7 @@ class PageController < ApplicationController
     output = {}
     output['menu'] = menu_html
     output['site_of_the_week'] = site_of_the_week
-    #output['gratitudes'] = get_gratitudes
+    output['gratitudes'] = get_gratitudes
 
     render text: output.to_json
   end
