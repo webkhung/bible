@@ -140,6 +140,27 @@ class PageController < ApplicationController
     render text: text
   end
 
+  def add_gratitude
+    gratitude_count = nil
+    if params[:user_id].present? && params[:user_name].present? && params[:text].present?
+      Gratitude.create!(
+          user_id: params[:user_id],
+          user_name: params[:user_name],
+          text: params[:text]
+      )
+      gratitude_count = Gratitude.where('user_id = ?', params[:user_id]).count
+    end
+    render text: gratitude_count
+  end
+
+  def get_gratitudes
+    graitudes = []
+    Gratitude.order('created_at desc').all.each do |g|
+      graitudes << { user_name: g.user_name, text: g.text, time: g.created_at }
+    end
+    graitudes.to_json
+  end
+
   def finished
     log_usage('FINISHED')
     render nothing: true, status: 200
@@ -381,6 +402,7 @@ class PageController < ApplicationController
     output = {}
     output['menu'] = menu_html
     output['site_of_the_week'] = site_of_the_week
+    output['gratitudes'] = get_gratitudes
 
     render text: output.to_json
   end

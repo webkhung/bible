@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'memorized_verses_with_count' => 'page#memorized_verses_with_count'
   get 'memorized_stats_weekly' => 'page#memorized_stats_weekly'
   get 'menu' => 'page#menu'
+  get 'add_gratitude' => 'page#add_gratitude'
+  get 'get_gratitudes' => 'page#get_gratitudes'
   get 'startup_data' => 'page#startup_data'
 
 
