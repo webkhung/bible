@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'answered' => 'page#answered'
   get 'usage' => 'page#usage'
   get 'report' => 'page#report'
+  get 'gratitudes' => 'page#gratitudes'
   get 'users' => 'page#users'
   get 'bg_rating' => 'page#bg_rating'
   get 'users_count' => 'page#users_count'

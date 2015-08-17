@@ -176,6 +176,10 @@ class PageController < ApplicationController
     render nothing: true, status: 200
   end
 
+  def gratitudes
+    @gratitudes = Gratitude.order('created_at desc').all
+  end
+
   def report
     all = Usage.select(:user_name).distinct.pluck(:user_name).compact
     old = Usage.select(:user_name).where('created_at < ?', 3.days.ago).distinct.pluck(:user_name).compact
