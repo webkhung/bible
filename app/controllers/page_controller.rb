@@ -158,7 +158,7 @@ class PageController < ApplicationController
     Gratitude.order('created_at desc').all.each do |g|
       graitudes << { user_name: g.user_name, text: g.text, time: g.created_at }
     end
-    graitudes.to_json
+    graitudes.shuffle.to_json
   end
 
   def finished
@@ -408,6 +408,7 @@ class PageController < ApplicationController
     output['menu'] = menu_html
     output['site_of_the_week'] = site_of_the_week
     output['gratitudes'] = get_gratitudes
+    output['your-gratitudes-count'] = Gratitude.where('user_id = ?', params[:user_id]).count
 
     render text: output.to_json
   end
