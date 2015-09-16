@@ -158,7 +158,8 @@ class PageController < ApplicationController
     Gratitude.order('created_at desc').all.each do |g|
       graitudes << { user_name: g.user_name, text: g.text, time: g.created_at }
     end
-    graitudes.shuffle.to_json
+    #graitudes.shuffle.to_json
+    graitudes.to_json
   end
 
   def finished
@@ -390,10 +391,10 @@ class PageController < ApplicationController
     <ul>
       <li>
         <p><strong>What's New</strong></p>
+        <p>9-10-2015: Added more fonts, colors and backgrounds!</p>
         <p>8-22-2015: Some minor improvement on the gratitude functionality.</p>
         <p>8-15-2015: Let's praise the Lord everyday! Share how God has blessed you with other people.</p>
         <p>7-29-2015: New plans added: Faith, Strength, and Marriage!</p>
-        <p>7-26-2015: Added more reading plans and included verse number in memorization game (suggested by Christina)!</p>
       </li>
       <li>
         <p><strong>Support My Work</strong></p>
