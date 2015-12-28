@@ -135,7 +135,7 @@ class PageController < ApplicationController
       end
     end
 
-    log_usage('READ')
+    #log_usage('READ')
 
     render text: text
   end
@@ -163,12 +163,12 @@ class PageController < ApplicationController
   end
 
   def finished
-    log_usage('FINISHED')
+    #log_usage('FINISHED')
     render nothing: true, status: 200
   end
 
   def answered
-    log_usage('ANSWER')
+    #log_usage('ANSWER')
     render nothing: true, status: 200
   end
 
@@ -390,17 +390,7 @@ class PageController < ApplicationController
     menu_html = %q(
     <ul>
       <li>
-        <p><strong>What's New</strong></p>
-        <p>9-10-2015: Added more fonts, colors and backgrounds!</p>
-        <p>8-22-2015: Some minor improvement on the gratitude functionality.</p>
-        <p>8-15-2015: Let's praise the Lord everyday! Share how God has blessed you with other people.</p>
-        <p>7-29-2015: New plans added: Faith, Strength, and Marriage!</p>
-      </li>
-      <li>
-        <p><strong>Support My Work</strong></p>
-        <p>Tell your friends about <a id='share' href='http://www.bibleverseapp.com' target='_blank'>Daily Bible Verse</a></p>
-        <p>Like the <a id='fb' href='https://www.facebook.com/pages/My-Daily-Bible-Verse/1643317539236200' target='_blank'>Facebook page</a></p>
-        <p>Rate or leave feedback <a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>here</a></p>
+        <p>If you like this app, please rate or leave a feedback <a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>here</a></p>
       </li>
     </ul>
     )
@@ -411,6 +401,7 @@ class PageController < ApplicationController
     output['site_of_the_week'] = site_of_the_week
     output['gratitudes'] = get_gratitudes
     output['your-gratitudes-count'] = Gratitude.where('user_id = ?', params[:user_id]).count
+    output['gratitudes-data'] = Gratitude.where('user_id = ?', params[:user_id]).order('created_at asc')
 
     render text: output.to_json
   end
