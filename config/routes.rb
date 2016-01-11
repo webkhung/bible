@@ -19,7 +19,12 @@ Rails.application.routes.draw do
   get 'add_gratitude' => 'page#add_gratitude'
   get 'get_gratitudes' => 'page#get_gratitudes'
   get 'startup_data' => 'page#startup_data'
-
+  get 'add_favorite' => 'page#add_favorite'
+  get 'remove_favorite' => 'page#remove_favorite'
+  get 'favorite_count' => 'page#favorite_count'
+  get 'is_favorite' => 'page#is_favorite'
+  get 'all_favorites' => 'page#all_favorites'
+  get 'get_recent_favorites' => 'page#get_recent_favorites'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

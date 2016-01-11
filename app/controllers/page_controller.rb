@@ -140,6 +140,74 @@ class PageController < ApplicationController
     render text: text
   end
 
+  def favorite_param
+    if params[:user_id].present? && params[:user_name].present? && params[:plan_id].present? && params[:day].present?
+      [params[:user_id], params[:user_name], params[:plan_id], params[:day]]
+    else
+      nil
+    end
+  end
+
+  def is_favorite
+    is_fav = false
+    if favorite_param
+      is_fav = Favorite.where('user_id = ? and user_name = ? and plan_id = ? and day = ?', *favorite_param).present?
+    end
+    render_verse_favorite_data(['is_fav', is_fav])
+  end
+
+  def add_favorite
+    if favorite_param
+      Favorite.where('user_id = ? and user_name = ? and plan_id = ? and day = ?', *favorite_param).delete_all
+      Favorite.create!(
+          user_id: params[:user_id],
+          user_name: params[:user_name],
+          plan_id: params[:plan_id],
+          day: params[:day],
+      )
+      render_verse_favorite_data(['is_fav', true])
+    end
+  end
+
+  def remove_favorite
+    if favorite_param
+      Favorite.where('user_id = ? and user_name = ? and plan_id = ? and day = ?', *favorite_param).delete_all
+      render_verse_favorite_data(['is_fav', false])
+    end
+  end
+
+  def render_verse_favorite_data(addition_data = nil)
+    output = {}
+    output['count'] = verse_favorite_count
+    output['all'] = user_all_favorites
+    if addition_data
+      output[addition_data[0]] = addition_data[1]
+    end
+    render text: output.to_json
+  end
+
+  def verse_favorite_count
+    count = 0
+    if params[:plan_id].present? && params[:day].present?
+      count = Favorite.where('plan_id = ? and day = ?', params[:plan_id].to_i, params[:day].to_i).count
+    end
+    count
+  end
+
+  def user_all_favorites
+    output = []
+    if params[:user_id].present? && params[:user_name].present?
+      Favorite.where('user_id = ? and user_name = ?', params[:user_id], params[:user_name]).each do |f|
+        output << [f.plan_id, f.day]
+      end
+    end
+    output
+  end
+
+  def all_favorites
+    render text: user_all_favorites.to_json
+  end
+
   def add_gratitude
     gratitude_count = nil
     if params[:user_id].present? && params[:user_name].present? && params[:text].present?
@@ -160,6 +228,14 @@ class PageController < ApplicationController
     end
     #graitudes.shuffle.to_json
     graitudes.to_json
+  end
+
+  def get_recent_favorites
+    favorites = []
+    Favorite.where('created_at > ?', 3.days.ago).order('created_at desc').all.each do |f|
+      favorites << { user_name: f.user_name, plan_id: f.plan_id, day: f.day, time: f.created_at }
+    end
+    favorites.shuffle.to_json
   end
 
   def finished
@@ -365,6 +441,7 @@ class PageController < ApplicationController
     render text: output.to_json
   end
 
+  # Deprecated
   def menu
     render text: %q(
     <ul>
@@ -390,7 +467,11 @@ class PageController < ApplicationController
     menu_html = %q(
     <ul>
       <li>
-        <p>If you like this app, please rate or leave a feedback <a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>here</a></p>
+        <p><strong>If you like this app:</strong></p>
+        <p>Like the <a id='fb' href='https://www.facebook.com/pages/My-Daily-Bible-Verse/1643317539236200' target='_blank'>Facebook page</a></p>
+        <p>Rate or leave feedback at the <a id='rate' href='https://chrome.google.com/webstore/detail/daily-bible-verse/jogajkcgclkfedbhdcopmpmeeophkkji/reviews' target='_blank'>Chrome App Store</a></p>
+        <p><strong>To Remove this app:</strong></p>
+        <p>On your browser, click the menu (the 3 lines icon).  Select More tools > Extensions. On the extension you want to remove, click Remove from Chrome.</p>
       </li>
     </ul>
     )
@@ -400,6 +481,7 @@ class PageController < ApplicationController
     output['menu'] = menu_html
     output['site_of_the_week'] = site_of_the_week
     output['gratitudes'] = get_gratitudes
+    output['favorites'] = get_recent_favorites
     output['your-gratitudes-count'] = Gratitude.where('user_id = ?', params[:user_id]).count
     output['gratitudes-data'] = Gratitude.where('user_id = ?', params[:user_id]).order('created_at asc')
 
