@@ -2,6 +2,7 @@ require 'rexml/document'
 
 class PageController < ApplicationController
   include REXML
+  include ActionView::Helpers::DateHelper
 
   # you can put two verses together  "2Corinthians.12:10,1Timothy.6:12"
   READING_PLAN = [
@@ -179,6 +180,7 @@ class PageController < ApplicationController
   def render_verse_favorite_data(addition_data = nil)
     output = {}
     output['count'] = verse_favorite_count
+    output['users'] = verse_favorite_user_info
     output['all'] = user_all_favorites
     if addition_data
       output[addition_data[0]] = addition_data[1]
@@ -186,6 +188,7 @@ class PageController < ApplicationController
     render text: output.to_json
   end
 
+  # Depricate this in mid Feb
   def verse_favorite_count
     count = 0
     if params[:plan_id].present? && params[:day].present?
@@ -194,6 +197,17 @@ class PageController < ApplicationController
     count
   end
 
+  def verse_favorite_user_info
+    user_info = []
+    if params[:plan_id].present? && params[:day].present?
+      Favorite.where('plan_id = ? and day = ? and user_id != ?', params[:plan_id].to_i, params[:day].to_i, params[:user_id]).order(created_at: :desc).each do |f|
+        user_info << f.user_name
+      end
+    end
+    user_info
+  end
+
+  # Return favorited verses of this user
   def user_all_favorites
     output = []
     if params[:user_id].present? && params[:user_name].present?
@@ -414,7 +428,18 @@ class PageController < ApplicationController
     render text: output_sorted.to_json
   end
 
+  def get_activities
+    @activities = []
+    Favorite.where('user_id != ?', params['user_id']).order('created_at desc').limit(30).all.each do |f|
+      passage = READING_PLAN.select{ |p| p['id'] == f.plan_id.to_s }.first["days"][f.day - 1]
+      if (cache = Cache.find_by_passage(passage)).present?
+        text = cache.text
+      end
+      @activities << { type: 'favorite', user_name: f.user_name, plan_id: f.plan_id, day: f.day, text: text, time: time_ago_in_words(f.created_at) }
+    end
 
+    @activities.to_json
+  end
 
   def bg_rating
     @rating = Usage.where("usage_type like 'RATE-BG' and created_at > '2015-07-01 02:09:45'").select('details').group('details').order('count(*) desc').count
@@ -480,7 +505,7 @@ class PageController < ApplicationController
     output = {}
     output['menu'] = menu_html
     output['site_of_the_week'] = site_of_the_week
-    output['gratitudes'] = get_gratitudes
+    output['activities'] = get_activities
     output['favorites'] = get_recent_favorites
     output['your-gratitudes-count'] = Gratitude.where('user_id = ?', params[:user_id]).count
     output['gratitudes-data'] = Gratitude.where('user_id = ?', params[:user_id]).order('created_at asc')
