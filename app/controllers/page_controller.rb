@@ -299,7 +299,7 @@ class PageController < ApplicationController
     when 'time' then 'created_at desc'
     else 'DATE(created_at) desc, user_name, created_at desc'
     end
-    @users = Usage.all.where.not(usage_type: ['OPEN', 'VIEWED-LIKE']).where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 1.weeks.ago).order(order_sql)
+    @users = Usage.all.where.not(usage_type: ['OPEN', 'VIEWED-LIKE']).where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 3.days.ago).order(order_sql)
 
     #sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages group by user_name order by max(created_at) desc, min(created_at) desc"
     #@overall_duration = ActiveRecord::Base.connection.execute(sql)
