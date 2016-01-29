@@ -11,36 +11,56 @@
 - @usage_by_date.each do |usage_by_date|
   %div= "#{usage_by_date[0]} #{usage_by_date[1]}"
 
-%h2 Overall duration
-%table{ border: 1}
-  %tr
-    %td user name
-    %td count
-    %td max
-    %td min
-    %td duration
-  - @overall_duration.each do |row|
-    %tr
-      - row.each do |cell|
-        %td= cell[1]
+-#%h2 Overall duration
+-#%table{ border: 1}
+-#  %tr
+-#    %td user name
+-#    %td count
+-#    %td max
+-#    %td min
+-#    %td duration
+-#  - @overall_duration.each do |row|
+-#    %tr
+-#      - row.each do |cell|
+-#        %td= cell[1]
+-#
+-#%h2 Played count
+-#%table{ border: 1}
+-#  %tr
+-#    %td user name
+-#    %td count
+-#    %td max
+-#    %td min
+-#    %td duration
+-#  - @played_count.each do |row|
+-#    %tr
+-#      - row.each do |cell|
+-#        %td= cell[1]
 
-%h2 Played count
+%h2 Most Fav Users
 %table{ border: 1}
   %tr
     %td user name
     %td count
-    %td max
-    %td min
-    %td duration
-  - @played_count.each do |row|
+  - @most_fav_users.each do |row|
     %tr
       - row.each do |cell|
-        %td= cell[1]
+        %td= cell
+
+%h2 Most Fav Verses
+%table{ border: 1}
+  %tr
+    %td plan_id
+    %td day
+    %td count
+  - @most_fav_verses.each do |row|
+    %tr
+      - row.each do |cell|
+        %td= cell
 
 %h2 Log
 %table{ border: 1}
   %tr
-    %td user id
     %td user name
     %td ip
     %td usage_type
@@ -51,7 +71,6 @@
 
   - @users.each do |usage|
     %tr
-      %td= usage.user_id
       %td= usage.user_name
       %td= usage.ip
       %td= usage.usage_type

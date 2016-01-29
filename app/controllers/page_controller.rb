@@ -75,6 +75,22 @@ class PageController < ApplicationController
       "days"=> ["Isaiah.41:10","Isaiah.40:31","Psalm.73:26","Isaiah.40:29","Philippians.4:13","2Timothy.1:7","2Thessalonians.3:3","Psalm.59:16","Jeremiah.32:17","1Chronicles.16:11","Psalm.18:1-2","Ephesians.3:20-21","Habakkuk.3:19","Psalm.18:31","Job.37:23","2Corinthians.12:10"]
     },
     {
+      "id"=>"18",
+      "days"=> ["Genesis.8:1","Psalm.3:2-6","Joshua.10:25","Job.17:15","John.5:6","1Chronicles.29:15","Job.5:16","Job.6:8","Job.11:18-19","Psalm.147:11","Proverbs.13:12"]
+    },
+    {
+      "id"=> "19",
+      "days"=> ["Proverbs.18:24","Proverbs.22:24-25","Proverbs.13:20","Proverbs.27:5-6","Ecclesiastes.4:9-10","Proverbs.17:17","Proverbs.27:17","Proverbs.12:26","James.4:4","Job.16:20-21"]
+    },
+    {
+      "id"=> "20",
+      "days"=> ["1Corinthians.10:13-14","1John.2:16","1Corinthians.15:33","James.4:7","1Corinthians.6:12","1Peter.5:10","Romans.5:3-5","Titus.2:12","James.1:2-3","John.3:16-17","Philippians.4:13","Psalm.95:8","Matthew.6:13", "Matthew.26:41"]
+    },
+    {
+      "id"=> "21",
+      "days"=> ["Exodus.20:12", "Joshua.24:15", "Proverbs.6:20", "Matthew.15:4", "Proverbs.15:20", "Proverbs.1:8", "Colossians.3:20", "Ephesians.6:1-2", "Psalm.103:17", "Deuteronomy.5:16", "Proverbs.11:29", "Proverbs.15:27"]
+    },
+    {
       "id"=>"100",
       "days"=> ["Genesis.1-2", "Genesis.3-5", "Genesis.6-8", "Genesis.9-11", "Genesis.12-14", "Genesis.15-17", "Genesis.18-19", "Genesis.20-22", "Genesis.23-24", "Genesis.25-26", "Genesis.27-28", "Genesis.29-30", "Genesis.31-32", "Genesis.33-35", "Genesis.36-37", "Genesis.38-40", "Genesis.41", "Genesis.42-43", "Genesis.44-45", "Genesis.46-48", "Genesis.49-50"]
     },
@@ -283,13 +299,19 @@ class PageController < ApplicationController
     when 'time' then 'created_at desc'
     else 'DATE(created_at) desc, user_name, created_at desc'
     end
-    @users = Usage.all.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 1.weeks.ago).order(order_sql)
+    @users = Usage.all.where.not(usage_type: ['OPEN', 'VIEWED-LIKE']).where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 1.weeks.ago).order(order_sql)
 
-    sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages group by user_name order by max(created_at) desc, min(created_at) desc"
-    @overall_duration = ActiveRecord::Base.connection.execute(sql)
+    #sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages group by user_name order by max(created_at) desc, min(created_at) desc"
+    #@overall_duration = ActiveRecord::Base.connection.execute(sql)
+    #
+    #sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages where usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT' group by user_name order by max(created_at) desc, min(created_at) desc"
+    #@played_count = ActiveRecord::Base.connection.execute(sql)
 
-    sql = "select user_name, count(*), max(created_at), min(created_at), max(created_at) - min(created_at) as duration from usages where usage_type like 'ANSWERED_WRONG' or usage_type like 'ANSWERED_CORRECT' group by user_name order by max(created_at) desc, min(created_at) desc"
-    @played_count = ActiveRecord::Base.connection.execute(sql)
+    sql = "select user_name, count(*) from favorites group by user_id, user_name order by count(*) desc;"
+    @most_fav_users = ActiveRecord::Base.connection.execute(sql)
+
+    sql = "select plan_id, day, count(*) from favorites group by plan_id, day order by count(*) desc;"
+    @most_fav_verses = ActiveRecord::Base.connection.execute(sql)
   end
 
   def users_count
