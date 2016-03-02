@@ -254,7 +254,7 @@ class PageController < ApplicationController
   def get_chats
     chats = []
     chats_relation = if params[:last_chat].present?
-      Chat.where('created_at > ?', params[:last_chat]).order('id')
+      Chat.where('created_at > ?', Time.parse(params[:last_chat]) + 1.second).order('id')
     else
       Chat.order('id')
     end
