@@ -238,6 +238,32 @@ class PageController < ApplicationController
     render text: user_all_favorites.to_json
   end
 
+  def add_chat
+    if params[:user_id].present? && params[:user_name].present? && params[:text].present?
+      Chat.create!(
+          user_id: params[:user_id],
+          user_name: params[:user_name],
+          text: params[:text],
+          plan_id: params[:plan_id],
+          day: params[:day]
+      )
+    end
+    render text: 'ok'
+  end
+
+  def get_chats
+    chats = []
+    chats_relation = if params[:last_chat].present?
+      Chat.where('created_at > ?', params[:last_chat]).order('id')
+    else
+      Chat.order('id')
+    end
+    chats_relation.each do |c|
+      chats << { user_name: c.user_name, text: c.text, plan_id: c.plan_id, day: c.day, time: c.created_at, time_ago: time_ago_in_words(c.created_at) }
+    end
+    render text: chats.to_json
+  end
+
   def add_gratitude
     gratitude_count = nil
     if params[:user_id].present? && params[:user_name].present? && params[:text].present?
@@ -463,6 +489,36 @@ class PageController < ApplicationController
     @activities.to_json
   end
 
+  def top10_favorite_3_days
+    output = []
+    Favorite.where(created_at: 3.days.ago..Time.now).group(:plan_id, :day).order('count_id desc').count('id').take(3).each do |f|
+      plan_id, day = f[0][0], f[0][1]
+      count  = f[1]
+      passage = READING_PLAN.select{ |p| p['id'] == plan_id.to_s }.first["days"][day - 1]
+      if (cache = Cache.find_by_passage(passage)).present?
+        text = cache.text
+      end
+      output << { plan_id: plan_id, day: day, count: count, text: text }
+    end
+
+    output.to_json
+  end
+
+  def top10_favorite_all_time
+    output = []
+    Favorite.group(:plan_id, :day).order('count_id desc').count('id').take(5).each do |f|
+      plan_id, day = f[0][0], f[0][1]
+      count  = f[1]
+      passage = READING_PLAN.select{ |p| p['id'] == plan_id.to_s }.first["days"][day - 1]
+      if (cache = Cache.find_by_passage(passage)).present?
+        text = cache.text
+      end
+      output << { plan_id: plan_id, day: day, count: count, text: text }
+    end
+
+    output.to_json
+  end
+
   def bg_rating
     @rating = Usage.where("usage_type like 'RATE-BG' and created_at > '2015-07-01 02:09:45'").select('details').group('details').order('count(*) desc').count
 
@@ -529,8 +585,9 @@ class PageController < ApplicationController
     output['site_of_the_week'] = site_of_the_week
     output['activities'] = get_activities
     output['favorites'] = get_recent_favorites
-    output['your-gratitudes-count'] = Gratitude.where('user_id = ?', params[:user_id]).count
-    output['gratitudes-data'] = Gratitude.where('user_id = ?', params[:user_id]).order('created_at asc')
+    output['favorites_3_days'] = top10_favorite_3_days
+    #output['your-gratitudes-count'] = Gratitude.where('user_id = ?', params[:user_id]).count
+    #output['gratitudes-data'] = Gratitude.where('user_id = ?', params[:user_id]).order('created_at asc')
 
     render text: output.to_json
   end

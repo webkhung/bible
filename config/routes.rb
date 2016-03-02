@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'all_favorites' => 'page#all_favorites'
   get 'get_recent_favorites' => 'page#get_recent_favorites'
   get 'get_recent_activities' => 'page#get_recent_activities'
+  get 'get_chats' => 'page#get_chats'
+  get 'add_chat' => 'page#add_chat'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
