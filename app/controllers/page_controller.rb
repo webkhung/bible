@@ -253,14 +253,37 @@ class PageController < ApplicationController
 
   def get_chats
     chats = []
-    chats_relation = if params[:last_chat].present?
-      Chat.where('created_at > ?', Time.parse(params[:last_chat]) + 1.second).order('id')
-    else
-      Chat.order('id')
+    planId = params[:planId]
+    day = params[:day]
+
+    if planId && day
+      chats_relation = if params[:last_chat].present?
+        Chat.where(plan_id: planId, day: day).where('created_at > ?', Time.parse(params[:last_chat]) + 1.second).order('id')
+      else
+        Chat.where(plan_id: planId, day: day).order('id')
+      end
     end
+
+    chats_relation.each do |c|
+      chats << { user_name: c.user_name, text: c.text, plan_id: c.plan_id, day: c.day, time: c.created_at, time_ago: time_ago_in_words(c.created_at) }
+    end if chats_relation
+
+
+
+    chats_relation = if params[:last_chat].present?
+      Chat.where('created_at > ?', Time.parse(params[:last_chat]) + 1.second).where('created_at > ?', 2.days.ago).order('id')
+    else
+      Chat.where('created_at > ?', 2.days.ago).order('id')
+    end
+
+    if planId && day
+      chats_relation = chats_relation.where('plan_id != ? or day != ?', planId, day)
+    end
+
     chats_relation.each do |c|
       chats << { user_name: c.user_name, text: c.text, plan_id: c.plan_id, day: c.day, time: c.created_at, time_ago: time_ago_in_words(c.created_at) }
     end
+
     render text: chats.to_json
   end
 
