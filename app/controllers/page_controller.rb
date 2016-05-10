@@ -338,7 +338,7 @@ class PageController < ApplicationController
 
   def report
     all = Usage.select(:user_name).distinct.pluck(:user_name).compact
-    old = Usage.select(:user_name).where('created_at < ?', 3.days.ago).distinct.pluck(:user_name).compact
+    old = Usage.select(:user_name).where('created_at < ?', 14.days.ago).distinct.pluck(:user_name).compact
     @new_users = all - old
 
     @usage_by_date = Usage.where("user_name not like 'Warren' and user_name not like 'Kelvin' and user_name not like 'Jaime Thomas' and created_at > ?", 1.weeks.ago).group('date(created_at)').order('date(created_at) desc').count('distinct(user_name)')
